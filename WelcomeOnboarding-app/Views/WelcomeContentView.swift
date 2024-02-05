@@ -17,7 +17,7 @@ struct WelcomeContentView: View {
             withConfiguration: withConfiguration,
             headerTitleSize: 1 / 16,
             headerAlignment: 1 / 3,
-            showJumpBackground: true,
+            showJumpBackground: false,
             alignmentFeatures: 1 / 3.6,
             spacingBetwinFeatures: 1 / 68,
             iconRowSize: 1 / 20,

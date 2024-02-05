@@ -19,7 +19,8 @@ struct LanguageContentView: View {
         UIOnboardingContentView(
             withConfiguration: withConfiguration,
             headerTitleSize: 1 / 36,
-            headerAlignment: 1 / 2.8, showJumpBackground: false,
+            headerAlignment: 1 / 2.8,
+            showJumpBackground: true,
             alignmentFeatures: 1 / 5,
             spacingBetwinFeatures: 1 / 68,
             iconRowSize: 1 / 18,

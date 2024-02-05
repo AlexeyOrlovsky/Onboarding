@@ -39,7 +39,7 @@ extension WelcomeOnboarding {
 
         static func setUpFeatures() -> [UIOnboardingViewConfiguration.Feature] {
             var features: [UIOnboardingViewConfiguration.Feature] = .init()
-            
+
             features.append(.checkBox([
                 .init(
                     icon: UIImage(named: "englandLangIcon") ?? .init(),

@@ -32,7 +32,7 @@ struct UIOnboardingContentView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(showJumpBackground ? Color(UIColor.systemBackground) : Color(UIColor.systemBackground))
             .onAppear {
-                self.showJumpBackground = true
+                self.showJumpBackground = false
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     zoomTitle = true
@@ -54,7 +54,7 @@ extension UIOnboardingContentView {
         GeometryReader { reader in
             ZStack {
                 Color(UIColor.systemGray6)
-                    .offset(y: showJumpBackground ? 0 : 1000)
+                    .offset(y: showJumpBackground ? 1000 : 0)
                     .animation(Animation.linear(duration: 0.5))
 
                 VStack(spacing: 0) {
