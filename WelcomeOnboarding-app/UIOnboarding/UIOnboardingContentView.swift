@@ -20,6 +20,7 @@ struct UIOnboardingContentView: View {
     @State var showBottomBarBackground: Bool
     @State var showCheckmarkInRow: Bool
     @State var iconPadding: Bool
+    @State var show: (() -> Void)?
     // @State var showNextScreen:
     // @State var spacingRows: CGFloat
 
@@ -164,7 +165,7 @@ extension UIOnboardingContentView {
     @ViewBuilder private func bottomBar(reader: GeometryProxy) -> some View {
         UIOnboardingBottomBar(bottomBar: self.withConfiguration.bottomBar,
                               reader: reader, showContent: self.$showContent,
-                              showOnboardingPermissions: $showOnboardingPermissions
+                              show: $show
         )
         .padding(.bottom, 20)
     }

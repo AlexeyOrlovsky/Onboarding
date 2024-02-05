@@ -12,7 +12,7 @@ struct UIOnboardingBottomBar: View {
     let reader: GeometryProxy
 
     @Binding var showContent: Bool
-    @Binding var showOnboardingPermissions: Bool
+    @Binding var show: (() -> Void)?
 
     var body: some View {
         content()
@@ -37,12 +37,9 @@ extension UIOnboardingBottomBar {
                             .foregroundColor(showContent ? Color(UIColor.systemGray2) : .clear)
                     }
                     VStack(alignment: .center) {
-                        NavigationLink(destination: WelcomeContentView(), isActive: $showOnboardingPermissions) {
-                            // EmptyView()
-                        }
                         Button {
+                            show?()
                             print("hello")
-                            showOnboardingPermissions = true
                         } label: {
                             Text(bottomBar.buttonText)
                                 .font(.system(size: reader.size.height * (1 / 42)))

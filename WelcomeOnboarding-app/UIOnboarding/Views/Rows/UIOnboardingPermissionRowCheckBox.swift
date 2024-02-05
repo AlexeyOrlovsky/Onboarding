@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UIOnboardingPermissionRowCheckBox: View {
-    let permission: UIOnboardingFeatureCheckBox
+    var permission: UIOnboardingFeatureCheckBox
     let reader: GeometryProxy
 
     @Binding var iconRowSize: CGFloat
@@ -45,6 +45,7 @@ extension UIOnboardingPermissionRowCheckBox {
                         Spacer()
 
                         Image(systemName: showCheckmark ? "checkmark" : .init())
+                            .opacity(permission.selected ? 1.0 : 0.0)
                     }
                 }
             }

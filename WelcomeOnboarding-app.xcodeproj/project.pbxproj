@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8B5F8BC32B70CA6100EC8552 /* UIOnboardingPermissionRowCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F8BC22B70CA6100EC8552 /* UIOnboardingPermissionRowCheckBox.swift */; };
 		8B5F8BC62B70CE8500EC8552 /* FlowStacks in Frameworks */ = {isa = PBXBuildFile; productRef = 8B5F8BC52B70CE8500EC8552 /* FlowStacks */; };
+		8B5F8BC92B70CF2800EC8552 /* AppCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F8BC82B70CF2800EC8552 /* AppCoordinatorViewModel.swift */; };
+		8B5F8BCB2B70CF6600EC8552 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F8BCA2B70CF6600EC8552 /* AppCoordinator.swift */; };
 		8BAC3B422B6E72060015CE9F /* LanguagePageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3B412B6E72060015CE9F /* LanguagePageConfiguration.swift */; };
 		8BAC3B442B6E72F90015CE9F /* LanguageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3B432B6E72F90015CE9F /* LanguageContentView.swift */; };
 		8BAC3B462B6FBFFE0015CE9F /* UIOnboardingFeatureCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3B452B6FBFFE0015CE9F /* UIOnboardingFeatureCheckBox.swift */; };
@@ -28,6 +30,8 @@
 
 /* Begin PBXFileReference section */
 		8B5F8BC22B70CA6100EC8552 /* UIOnboardingPermissionRowCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingPermissionRowCheckBox.swift; sourceTree = "<group>"; };
+		8B5F8BC82B70CF2800EC8552 /* AppCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorViewModel.swift; sourceTree = "<group>"; };
+		8B5F8BCA2B70CF6600EC8552 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		8BAC3B412B6E72060015CE9F /* LanguagePageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePageConfiguration.swift; sourceTree = "<group>"; };
 		8BAC3B432B6E72F90015CE9F /* LanguageContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageContentView.swift; sourceTree = "<group>"; };
 		8BAC3B452B6FBFFE0015CE9F /* UIOnboardingFeatureCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingFeatureCheckBox.swift; sourceTree = "<group>"; };
@@ -65,6 +69,15 @@
 				8B5F8BC22B70CA6100EC8552 /* UIOnboardingPermissionRowCheckBox.swift */,
 			);
 			path = Rows;
+			sourceTree = "<group>";
+		};
+		8B5F8BC72B70CF1A00EC8552 /* AppCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				8B5F8BC82B70CF2800EC8552 /* AppCoordinatorViewModel.swift */,
+				8B5F8BCA2B70CF6600EC8552 /* AppCoordinator.swift */,
+			);
+			path = AppCoordinator;
 			sourceTree = "<group>";
 		};
 		8BAC3B402B6E71D70015CE9F /* Configurations */ = {
@@ -126,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				8BB4C09F2B6A994100DC71E2 /* WelcomeOnboardingApp.swift */,
+				8B5F8BC72B70CF1A00EC8552 /* AppCoordinator */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -297,6 +311,7 @@
 				8BB4C0BF2B6A9CD800DC71E2 /* WelcomePageConfiguration.swift in Sources */,
 				8BB4C0A22B6A994100DC71E2 /* WelcomeContentView.swift in Sources */,
 				8BB4C0B52B6A9BCC00DC71E2 /* UIOnboardingFeature.swift in Sources */,
+				8B5F8BCB2B70CF6600EC8552 /* AppCoordinator.swift in Sources */,
 				8BB4C0C92B6AA30D00DC71E2 /* UIOnboardingBottomBarConfiguration.swift in Sources */,
 				8BB4C0B32B6A9BB000DC71E2 /* UIOnboardingViewConfiguration.swift in Sources */,
 				8BB4C0A02B6A994100DC71E2 /* WelcomeOnboardingApp.swift in Sources */,
@@ -305,6 +320,7 @@
 				8BAC3B422B6E72060015CE9F /* LanguagePageConfiguration.swift in Sources */,
 				8BB4C0C72B6AA2DC00DC71E2 /* UIOnboardingPermissionRow.swift in Sources */,
 				8BAC3B442B6E72F90015CE9F /* LanguageContentView.swift in Sources */,
+				8B5F8BC92B70CF2800EC8552 /* AppCoordinatorViewModel.swift in Sources */,
 				8BAC3B462B6FBFFE0015CE9F /* UIOnboardingFeatureCheckBox.swift in Sources */,
 				8BB4C0B92B6A9C5900DC71E2 /* UIOnboardingContentView.swift in Sources */,
 			);

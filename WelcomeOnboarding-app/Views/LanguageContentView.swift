@@ -6,14 +6,18 @@
 //
 
 import SwiftUI
+import FlowStacks
 
 struct LanguageContentView: View {
     private var withConfiguration: UIOnboardingViewConfiguration {
         UIOnboardingViewConfiguration.Onboarding.languagesPage()
     }
 
+    @EnvironmentObject var navigator: AppFlowNavigator
+
     var body: some View {
-        UIOnboardingContentView(withConfiguration: withConfiguration,
+        UIOnboardingContentView(
+            withConfiguration: withConfiguration,
                                 headerTitleSize: 1 / 36,
                                 swipeBackground: false,
                                 positionFeatures: 1 / 5,
@@ -22,7 +26,8 @@ struct LanguageContentView: View {
                                 iconRowSize: 1 / 18,
                                 showBottomBarBackground: false,
                                 showCheckmarkInRow: true,
-                                iconPadding: true
+                                iconPadding: true,
+                                show: { navigator.push(.welcomeView) }
         )
     }
 }
