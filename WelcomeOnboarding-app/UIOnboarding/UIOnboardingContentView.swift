@@ -10,7 +10,7 @@ import SwiftUI
 struct UIOnboardingContentView: View {
     var withConfiguration: UIOnboardingViewConfiguration
 
-    // MARK: Settings
+    // MARK: - Config Settings
     @State var headerTitleSize: CGFloat
     @State var headerAlignment: CGFloat
     @State var showJumpBackground: Bool
@@ -21,10 +21,11 @@ struct UIOnboardingContentView: View {
     @State var iconRowSpacing: Bool
     @State var navigator: (() -> Void)?
 
+    // MARK: - Properties
     @State private var zoomTitle: Bool = false
     @State private var moveToTopTitle: Bool = false
     @State private var showContent: Bool = false
-    @State var showOnboardingPermissions: Bool = false
+    @State private var showOnboardingPermissions: Bool = false
 
     var body: some View {
         content()
@@ -40,7 +41,6 @@ struct UIOnboardingContentView: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                     moveToTopTitle = true
                 }
-
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
                     showContent = true
                 }
@@ -130,7 +130,7 @@ extension UIOnboardingContentView {
                                                       iconPadding: $iconRowSpacing
                             )
                         }
-                    case.checkBox(var checkBoxFeatures):
+                    case.checkBox(let checkBoxFeatures):
                         ForEach(checkBoxFeatures.indices, id: \.self) { index in
                             Button {
                                 checkBoxFeatures.indices.forEach { checkBoxFeatures[$0].selected = false }

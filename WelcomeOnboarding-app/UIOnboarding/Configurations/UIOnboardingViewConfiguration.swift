@@ -9,6 +9,7 @@ import SwiftUI
 
 // MARK: - UIOnboardingViewConfiguration
 public struct UIOnboardingViewConfiguration {
+
     // MARK: - Feature
     public enum Feature {
         case plain([UIOnboardingFeature])
@@ -38,17 +39,5 @@ public struct UIOnboardingViewConfiguration {
         self.features = features
         self.bottomBar = bottomBar
         self.defaultSelection = defaultSelection
-    }
-}
-
-// MARK: - Extension
-extension UIOnboardingViewConfiguration.Feature: Identifiable {
-    public var id: UUID {
-        switch self {
-            case .plain(let onboardingFeatures):
-                return onboardingFeatures.first?.id ?? UUID()
-            case .checkBox(let checkBoxFeatures):
-                return checkBoxFeatures.first?.id ?? UUID()
-        }
     }
 }

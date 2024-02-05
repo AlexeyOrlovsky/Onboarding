@@ -11,6 +11,7 @@ struct UIOnboardingPermissionRowCheckBox: View {
     @ObservedObject var permission: UIOnboardingFeatureCheckBox
     let reader: GeometryProxy
 
+    // MARK: - Properties
     @Binding var iconRowSize: CGFloat
     @Binding var iconPadding: Bool
 
@@ -19,6 +20,7 @@ struct UIOnboardingPermissionRowCheckBox: View {
     }
 }
 
+// MARK: - UIOnboardingPermissionRowCheckBox
 extension UIOnboardingPermissionRowCheckBox {
     @ViewBuilder private func content() -> some View {
         HStack(alignment: .top, spacing: 10) {
