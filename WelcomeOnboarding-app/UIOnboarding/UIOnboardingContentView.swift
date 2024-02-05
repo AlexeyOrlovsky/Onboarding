@@ -12,30 +12,27 @@ struct UIOnboardingContentView: View {
 
     // MARK: Settings
     @State var headerTitleSize: CGFloat
-    @State var swipeBackground: Bool
-    @State var positionFeatures: CGFloat
-    @State var spasingBetwinFeatures: CGFloat
-    @State var headerPosition: CGFloat
+    @State var headerAlignment: CGFloat
+    @State var showJumpBackground: Bool
+    @State var alignmentFeatures: CGFloat
+    @State var spacingBetwinFeatures: CGFloat
     @State var iconRowSize: CGFloat
     @State var showBottomBarBackground: Bool
-    @State var showCheckmarkInRow: Bool
-    @State var iconPadding: Bool
-    @State var show: (() -> Void)?
-    // @State var showNextScreen:
-    // @State var spacingRows: CGFloat
+    @State var iconRowSpacing: Bool
+    @State var navigator: (() -> Void)?
 
-    @State private var zoomTitle = false
-    @State private var moveToTopTitle = false
-    @State private var showContent = false
-    @State var showOnboardingPermissions = false
+    @State private var zoomTitle: Bool = false
+    @State private var moveToTopTitle: Bool = false
+    @State private var showContent: Bool = false
+    @State var showOnboardingPermissions: Bool = false
 
     var body: some View {
         content()
             .ignoresSafeArea()
-            .frame(maxWidth: .infinity, maxHeight: .infinity) // 🏳️
-            .background(swipeBackground ? Color(UIColor.systemBackground) : Color(UIColor.systemBackground))
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(showJumpBackground ? Color(UIColor.systemBackground) : Color(UIColor.systemBackground))
             .onAppear {
-                self.swipeBackground = true
+                self.showJumpBackground = true
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     zoomTitle = true
@@ -57,7 +54,7 @@ extension UIOnboardingContentView {
         GeometryReader { reader in
             ZStack {
                 Color(UIColor.systemGray6)
-                    .offset(y: swipeBackground ? 0 : 1000)
+                    .offset(y: showJumpBackground ? 0 : 1000)
                     .animation(Animation.linear(duration: 0.5))
 
                 VStack(spacing: 0) {
@@ -68,7 +65,7 @@ extension UIOnboardingContentView {
                             .frame(width: reader.size.height * (1 / 3))
                             .opacity(showContent ? 1 : 0)
                             .scaleEffect(zoomTitle ? 1 : 0.5)
-                            .padding(.top, reader.size.height * -(positionFeatures))
+                            .padding(.top, reader.size.height * -(alignmentFeatures))
                             .animation(.easeInOut(duration: 0.3))
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -96,12 +93,7 @@ extension UIOnboardingContentView {
     @ViewBuilder private func header(reader: GeometryProxy) -> some View {
         VStack(alignment: .leading) {
 
-            Image(uiImage: (
-                UIImage(
-                    named: "\(withConfiguration.appIcon)"
-                ) ?? UIImage(
-                    systemName: "\(withConfiguration.appIcon)")
-            ) ?? .init()) // 🏳️
+            Image(uiImage: withConfiguration.appIcon)
             .resizable()
             .opacity(zoomTitle ? 1 : 0)
             .frame(width: reader.size.height * (1 / 12), height: reader.size.height *
@@ -117,7 +109,7 @@ extension UIOnboardingContentView {
                 .fontWeight(.black)
                 .foregroundColor(.black).opacity(zoomTitle ? 1 : 0)
         }
-        .padding(.top, reader.size.height * (headerPosition))
+        .padding(.top, reader.size.height * (headerAlignment))
         .scaleEffect(zoomTitle ? 1 : 0.5)
         .offset(y: moveToTopTitle ? reader.size.height * -(1 / 3.5) : 0)
         .animation(.easeInOut(duration: 1.0))
@@ -135,24 +127,25 @@ extension UIOnboardingContentView {
                             UIOnboardingPermissionRow(permission: permission,
                                                       reader: reader,
                                                       iconRowSize: $iconRowSize,
-                                                      showCheckmark: $showCheckmarkInRow,
-                                                      iconPadding: $iconPadding
+                                                      iconPadding: $iconRowSpacing
                             )
                         }
-                    case .checkBox(let checkBoxFeatures):
-                        ForEach(checkBoxFeatures) { checkBoxPermission in
+                    case.checkBox(var checkBoxFeatures):
+                        ForEach(checkBoxFeatures.indices, id: \.self) { index in
                             Button {
-                                print("Hello")
+                                checkBoxFeatures.indices.forEach { checkBoxFeatures[$0].selected = false }
+                                checkBoxFeatures[index].selected = true
                             } label: {
-                                UIOnboardingPermissionRowCheckBox(permission: checkBoxPermission,
+                                UIOnboardingPermissionRowCheckBox(permission: checkBoxFeatures[index],
                                                                   reader: reader,
                                                                   iconRowSize: $iconRowSize,
-                                                                  showCheckmark: $showCheckmarkInRow,
-                                                                  iconPadding: $iconPadding
+                                                                  iconPadding: $iconRowSpacing
                                 )
+                                .padding(.top, reader.size.height * (spacingBetwinFeatures))
                             }
                             .tint(Color(UIColor.label))
-                            .buttonStyle(.plain)
+                            // .contentShape(Rectangle())
+                            .buttonStyle(PlainButtonStyle())
                         }
                 }
             }
@@ -165,7 +158,7 @@ extension UIOnboardingContentView {
     @ViewBuilder private func bottomBar(reader: GeometryProxy) -> some View {
         UIOnboardingBottomBar(bottomBar: self.withConfiguration.bottomBar,
                               reader: reader, showContent: self.$showContent,
-                              show: $show
+                              show: $navigator
         )
         .padding(.bottom, 20)
     }

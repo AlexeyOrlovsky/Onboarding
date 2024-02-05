@@ -16,7 +16,7 @@ public struct UIOnboardingViewConfiguration {
     }
 
     // MARK: - Properties
-    public var appIcon: String
+    public var appIcon: UIImage
     public var firstTitleLine: String
     public var secondTitleLine: String
     public var features: [Feature]
@@ -25,7 +25,7 @@ public struct UIOnboardingViewConfiguration {
 
     // MARK: - Init
     public init(
-        appIcon: String,
+        appIcon: UIImage,
         firstTitleLine: String,
         secondTitleLine: String,
         features: [Feature],
@@ -41,6 +41,7 @@ public struct UIOnboardingViewConfiguration {
     }
 }
 
+// MARK: - Extension
 extension UIOnboardingViewConfiguration.Feature: Identifiable {
     public var id: UUID {
         switch self {

@@ -62,13 +62,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8B5F8BC12B70CA5500EC8552 /* Rows */ = {
+		8B5F8BC12B70CA5500EC8552 /* UIOnboardingRows */ = {
 			isa = PBXGroup;
 			children = (
 				8BB4C0C62B6AA2DC00DC71E2 /* UIOnboardingPermissionRow.swift */,
 				8B5F8BC22B70CA6100EC8552 /* UIOnboardingPermissionRowCheckBox.swift */,
 			);
-			path = Rows;
+			path = UIOnboardingRows;
 			sourceTree = "<group>";
 		};
 		8B5F8BC72B70CF1A00EC8552 /* AppCoordinator */ = {
@@ -87,15 +87,6 @@
 				8BB4C0BE2B6A9CD800DC71E2 /* WelcomePageConfiguration.swift */,
 			);
 			path = Configurations;
-			sourceTree = "<group>";
-		};
-		8BAC3B492B6FF7FB0015CE9F /* Feature */ = {
-			isa = PBXGroup;
-			children = (
-				8BB4C0B42B6A9BCC00DC71E2 /* UIOnboardingFeature.swift */,
-				8BAC3B452B6FBFFE0015CE9F /* UIOnboardingFeatureCheckBox.swift */,
-			);
-			path = Feature;
 			sourceTree = "<group>";
 		};
 		8BB4C0932B6A994100DC71E2 = {
@@ -174,7 +165,8 @@
 		8BB4C0B12B6A9B8700DC71E2 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
-				8BAC3B492B6FF7FB0015CE9F /* Feature */,
+				8BB4C0B42B6A9BCC00DC71E2 /* UIOnboardingFeature.swift */,
+				8BAC3B452B6FBFFE0015CE9F /* UIOnboardingFeatureCheckBox.swift */,
 				8BB4C0B22B6A9BB000DC71E2 /* UIOnboardingViewConfiguration.swift */,
 				8BB4C0C82B6AA30D00DC71E2 /* UIOnboardingBottomBarConfiguration.swift */,
 			);
@@ -202,7 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				8BB4C0C32B6AA26F00DC71E2 /* UIOnboardingBottomBar.swift */,
-				8B5F8BC12B70CA5500EC8552 /* Rows */,
+				8B5F8BC12B70CA5500EC8552 /* UIOnboardingRows */,
 			);
 			path = Views;
 			sourceTree = "<group>";

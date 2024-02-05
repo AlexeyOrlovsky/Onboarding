@@ -22,8 +22,8 @@ extension WelcomeOnboarding {
 
     // MARK: - OnboardingViewRepresentable UIOnboardingHelper
     private struct LanguagePageConfiguration: UIOnboardingConfiguratable {
-        static func setUpIcon() -> String {
-            let iconName = "" // 🏳️
+        static func setUpIcon() -> UIImage {
+            let iconName = UIImage(named: "") ?? .init()
             return iconName
         }
 
@@ -33,37 +33,38 @@ extension WelcomeOnboarding {
         }
 
         static func setUpSecondTitleLine() -> String {
-            let iconName = "" // 🏳️
+            let iconName = ""
             return iconName
         }
 
         static func setUpFeatures() -> [UIOnboardingViewConfiguration.Feature] {
             var features: [UIOnboardingViewConfiguration.Feature] = .init()
-
-            features.append(.checkBox(
-                [
-                    .init(
-                        icon: "englandLangIcon",
-                        title: "English",
-                        description: "",
-                        selected: true
-                    ),
-                    .init(
-                        icon: "germanyLangIcon",
-                        title: "Germany",
-                        description: ""
-                    ),
-                    .init(
-                        icon: "italyLangIcon",
-                        title: "Italian",
-                        description: ""
-                    ),
-                    .init(icon: "sloveniaLangIcon",
-                          title: "Slovenian",
-                          description: ""
-                         )
-                ]
-            ))
+            
+            features.append(.checkBox([
+                .init(
+                    icon: UIImage(named: "englandLangIcon") ?? .init(),
+                    title: "English",
+                    description: "",
+                    selected: true
+                ),
+                .init(
+                    icon: UIImage(named: "germanyLangIcon") ?? .init(),
+                    title: "Germany",
+                    description: "",
+                    selected: false
+                ),
+                .init(
+                    icon: UIImage(named: "italyLangIcon") ?? .init(),
+                    title: "Italian",
+                    description: "",
+                    selected: false
+                ),
+                .init(icon: UIImage(named: "sloveniaLangIcon") ?? .init(),
+                      title: "Slovenian",
+                      description: "",
+                      selected: false
+                     )
+            ]))
 
             return features
         }

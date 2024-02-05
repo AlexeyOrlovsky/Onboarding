@@ -22,8 +22,8 @@ extension WelcomeOnboarding {
 
     // MARK: - OnboardingViewRepresentable UIOnboardingHelper
     private struct WelcomePageConfiguration: UIOnboardingConfiguratable {
-        static func setUpIcon() -> String {
-            let iconName = "appIcon.dev"
+        static func setUpIcon() -> UIImage {
+            let iconName = UIImage(named: "appIcon.dev") ?? .init()
             return iconName
         }
 
@@ -40,20 +40,21 @@ extension WelcomeOnboarding {
         static func setUpFeatures() -> [UIOnboardingViewConfiguration.Feature] {
             var features: [UIOnboardingViewConfiguration.Feature] = .init()
 
-            features.append(.plain(
+            features.append(
+                .plain(
                 [
                     .init(
-                        icon: "bluetoothIcon",
+                        icon: UIImage(named: "bluetoothIcon") ?? .init(),
                         title: "Allow to use bluetooth connection",
                         description: "It's needed to scan nearby beacons and present different scenarios to you"
                     ),
                     .init(
-                        icon: "location",
+                        icon: UIImage(systemName: "location") ?? .init(),
                         title: "Allow to use location updates",
                         description: "It's needed to scan nearby beacons and present different scenarios to you"
                     ),
                     .init(
-                        icon: "app.badge",
+                        icon: UIImage(systemName: "app.badge") ?? .init(),
                         title: "Allow to send notifications",
                         description: "It's needed to send notifications if beacons nearby"
                     )

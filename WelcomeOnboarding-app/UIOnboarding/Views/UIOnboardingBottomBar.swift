@@ -39,7 +39,7 @@ extension UIOnboardingBottomBar {
                     VStack(alignment: .center) {
                         Button {
                             show?()
-                            print("hello")
+                            print("Continue Button tapped")
                         } label: {
                             Text(bottomBar.buttonText)
                                 .font(.system(size: reader.size.height * (1 / 42)))

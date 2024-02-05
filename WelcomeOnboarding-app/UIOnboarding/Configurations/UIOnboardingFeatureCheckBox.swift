@@ -7,19 +7,20 @@
 
 import SwiftUI
 
-public struct UIOnboardingFeatureCheckBox: Identifiable {
-    public let id = UUID()
-    var icon: String
+public class UIOnboardingFeatureCheckBox: Identifiable, ObservableObject {
+    public var id = UUID()
+    var icon: UIImage
     var iconTint: Color
     var title: String
     var description: String
-    var selected: Bool
+    @Published var selected: Bool
 
-    public init(icon: String,
-                iconTint: Color = Color(UIColor.label),
-                title: String,
-                description: String,
-                selected: Bool = false
+    public init(
+        icon: UIImage,
+        iconTint: Color = Color(UIColor.label),
+        title: String,
+        description: String,
+        selected: Bool
     ) {
         self.icon = icon
         self.iconTint = iconTint

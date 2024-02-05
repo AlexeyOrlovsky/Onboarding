@@ -18,16 +18,14 @@ struct LanguageContentView: View {
     var body: some View {
         UIOnboardingContentView(
             withConfiguration: withConfiguration,
-                                headerTitleSize: 1 / 36,
-                                swipeBackground: false,
-                                positionFeatures: 1 / 5,
-                                spasingBetwinFeatures: 1 / 68,
-                                headerPosition: 1 / 2.8,
-                                iconRowSize: 1 / 18,
-                                showBottomBarBackground: false,
-                                showCheckmarkInRow: true,
-                                iconPadding: true,
-                                show: { navigator.push(.welcomeView) }
+            headerTitleSize: 1 / 36,
+            headerAlignment: 1 / 2.8, showJumpBackground: false,
+            alignmentFeatures: 1 / 5,
+            spacingBetwinFeatures: 1 / 68,
+            iconRowSize: 1 / 18,
+            showBottomBarBackground: false,
+            iconRowSpacing: true,
+            navigator: { navigator.push(.welcomeView) }
         )
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - UIOnboardingConfiguratable
 protocol UIOnboardingConfiguratable {
-    static func setUpIcon() -> String
+    static func setUpIcon() -> UIImage
     static func setUpFirstTitleLine() -> String
     static func setUpSecondTitleLine() -> String
     static func setUpFeatures() -> [UIOnboardingViewConfiguration.Feature]
