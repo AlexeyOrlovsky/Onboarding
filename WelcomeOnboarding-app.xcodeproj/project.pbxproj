@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8B5F8BC32B70CA6100EC8552 /* UIOnboardingPermissionRowCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F8BC22B70CA6100EC8552 /* UIOnboardingPermissionRowCheckBox.swift */; };
+		8B5F8BC62B70CE8500EC8552 /* FlowStacks in Frameworks */ = {isa = PBXBuildFile; productRef = 8B5F8BC52B70CE8500EC8552 /* FlowStacks */; };
 		8BAC3B422B6E72060015CE9F /* LanguagePageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3B412B6E72060015CE9F /* LanguagePageConfiguration.swift */; };
 		8BAC3B442B6E72F90015CE9F /* LanguageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3B432B6E72F90015CE9F /* LanguageContentView.swift */; };
 		8BAC3B462B6FBFFE0015CE9F /* UIOnboardingFeatureCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3B452B6FBFFE0015CE9F /* UIOnboardingFeatureCheckBox.swift */; };
@@ -50,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B5F8BC62B70CE8500EC8552 /* FlowStacks in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +210,9 @@
 			dependencies = (
 			);
 			name = "WelcomeOnboarding-app";
+			packageProductDependencies = (
+				8B5F8BC52B70CE8500EC8552 /* FlowStacks */,
+			);
 			productName = "WelcomeOnboarding-app";
 			productReference = 8BB4C09C2B6A994100DC71E2 /* WelcomeOnboarding-app.app */;
 			productType = "com.apple.product-type.application";
@@ -236,6 +241,9 @@
 				Base,
 			);
 			mainGroup = 8BB4C0932B6A994100DC71E2;
+			packageReferences = (
+				8B5F8BC42B70CE8500EC8552 /* XCRemoteSwiftPackageReference "FlowStacks" */,
+			);
 			productRefGroup = 8BB4C09D2B6A994100DC71E2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -516,6 +524,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8B5F8BC42B70CE8500EC8552 /* XCRemoteSwiftPackageReference "FlowStacks" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/johnpatrickmorgan/FlowStacks";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8B5F8BC52B70CE8500EC8552 /* FlowStacks */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B5F8BC42B70CE8500EC8552 /* XCRemoteSwiftPackageReference "FlowStacks" */;
+			productName = FlowStacks;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8BB4C0942B6A994100DC71E2 /* Project object */;
 }
