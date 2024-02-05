@@ -13,7 +13,17 @@ struct WelcomeContentView: View {
     }
 
     var body: some View {
-        UIOnboardingContentView(withConfiguration: withConfiguration)
+        UIOnboardingContentView(
+            withConfiguration: withConfiguration,
+            headerTitleSize: 1 / 16,
+            headerAlignment: 1 / 3,
+            showJumpBackground: true,
+            alignmentFeatures: 1 / 3.6,
+            spacingBetwinFeatures: 1 / 68,
+            iconRowSize: 1 / 20,
+            showBottomBarBackground: true,
+            iconRowSpacing: false
+        )
     }
 }
 

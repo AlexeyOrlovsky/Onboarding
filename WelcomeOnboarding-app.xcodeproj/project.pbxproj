@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C936B46B3A794A71CAFA8C0 /* Pods_WelcomeOnboarding_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4547C409323BC9B9F96B012 /* Pods_WelcomeOnboarding_app.framework */; };
+		8B5F8BC32B70CA6100EC8552 /* UIOnboardingPermissionRowCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F8BC22B70CA6100EC8552 /* UIOnboardingPermissionRowCheckBox.swift */; };
+		8B5F8BC62B70CE8500EC8552 /* FlowStacks in Frameworks */ = {isa = PBXBuildFile; productRef = 8B5F8BC52B70CE8500EC8552 /* FlowStacks */; };
+		8B5F8BC92B70CF2800EC8552 /* AppCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F8BC82B70CF2800EC8552 /* AppCoordinatorViewModel.swift */; };
+		8B5F8BCB2B70CF6600EC8552 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F8BCA2B70CF6600EC8552 /* AppCoordinator.swift */; };
 		8BAC3B422B6E72060015CE9F /* LanguagePageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3B412B6E72060015CE9F /* LanguagePageConfiguration.swift */; };
 		8BAC3B442B6E72F90015CE9F /* LanguageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3B432B6E72F90015CE9F /* LanguageContentView.swift */; };
+		8BAC3B462B6FBFFE0015CE9F /* UIOnboardingFeatureCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3B452B6FBFFE0015CE9F /* UIOnboardingFeatureCheckBox.swift */; };
 		8BB4C0A02B6A994100DC71E2 /* WelcomeOnboardingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB4C09F2B6A994100DC71E2 /* WelcomeOnboardingApp.swift */; };
 		8BB4C0A22B6A994100DC71E2 /* WelcomeContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB4C0A12B6A994100DC71E2 /* WelcomeContentView.swift */; };
 		8BB4C0A42B6A994300DC71E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BB4C0A32B6A994300DC71E2 /* Assets.xcassets */; };
@@ -25,9 +29,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4624330A2C608D3AB8C8B3F4 /* Pods-WelcomeOnboarding-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WelcomeOnboarding-app.debug.xcconfig"; path = "Target Support Files/Pods-WelcomeOnboarding-app/Pods-WelcomeOnboarding-app.debug.xcconfig"; sourceTree = "<group>"; };
+		8B5F8BC22B70CA6100EC8552 /* UIOnboardingPermissionRowCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingPermissionRowCheckBox.swift; sourceTree = "<group>"; };
+		8B5F8BC82B70CF2800EC8552 /* AppCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorViewModel.swift; sourceTree = "<group>"; };
+		8B5F8BCA2B70CF6600EC8552 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		8BAC3B412B6E72060015CE9F /* LanguagePageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePageConfiguration.swift; sourceTree = "<group>"; };
 		8BAC3B432B6E72F90015CE9F /* LanguageContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageContentView.swift; sourceTree = "<group>"; };
+		8BAC3B452B6FBFFE0015CE9F /* UIOnboardingFeatureCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingFeatureCheckBox.swift; sourceTree = "<group>"; };
 		8BB4C09C2B6A994100DC71E2 /* WelcomeOnboarding-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WelcomeOnboarding-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BB4C09F2B6A994100DC71E2 /* WelcomeOnboardingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeOnboardingApp.swift; sourceTree = "<group>"; };
 		8BB4C0A12B6A994100DC71E2 /* WelcomeContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeContentView.swift; sourceTree = "<group>"; };
@@ -41,8 +48,6 @@
 		8BB4C0C32B6AA26F00DC71E2 /* UIOnboardingBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingBottomBar.swift; sourceTree = "<group>"; };
 		8BB4C0C62B6AA2DC00DC71E2 /* UIOnboardingPermissionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingPermissionRow.swift; sourceTree = "<group>"; };
 		8BB4C0C82B6AA30D00DC71E2 /* UIOnboardingBottomBarConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingBottomBarConfiguration.swift; sourceTree = "<group>"; };
-		DEF0BA97A821B286F6B0F282 /* Pods-WelcomeOnboarding-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WelcomeOnboarding-app.release.xcconfig"; path = "Target Support Files/Pods-WelcomeOnboarding-app/Pods-WelcomeOnboarding-app.release.xcconfig"; sourceTree = "<group>"; };
-		F4547C409323BC9B9F96B012 /* Pods_WelcomeOnboarding_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WelcomeOnboarding_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,19 +55,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C936B46B3A794A71CAFA8C0 /* Pods_WelcomeOnboarding_app.framework in Frameworks */,
+				8B5F8BC62B70CE8500EC8552 /* FlowStacks in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7E267A0E90247076E47252FA /* Frameworks */ = {
+		8B5F8BC12B70CA5500EC8552 /* UIOnboardingRows */ = {
 			isa = PBXGroup;
 			children = (
-				F4547C409323BC9B9F96B012 /* Pods_WelcomeOnboarding_app.framework */,
+				8BB4C0C62B6AA2DC00DC71E2 /* UIOnboardingPermissionRow.swift */,
+				8B5F8BC22B70CA6100EC8552 /* UIOnboardingPermissionRowCheckBox.swift */,
 			);
-			name = Frameworks;
+			path = UIOnboardingRows;
+			sourceTree = "<group>";
+		};
+		8B5F8BC72B70CF1A00EC8552 /* AppCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				8B5F8BC82B70CF2800EC8552 /* AppCoordinatorViewModel.swift */,
+				8B5F8BCA2B70CF6600EC8552 /* AppCoordinator.swift */,
+			);
+			path = AppCoordinator;
 			sourceTree = "<group>";
 		};
 		8BAC3B402B6E71D70015CE9F /* Configurations */ = {
@@ -79,8 +94,6 @@
 			children = (
 				8BB4C09E2B6A994100DC71E2 /* WelcomeOnboarding-app */,
 				8BB4C09D2B6A994100DC71E2 /* Products */,
-				A822C30D612B3126E37FED4D /* Pods */,
-				7E267A0E90247076E47252FA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				8BB4C09F2B6A994100DC71E2 /* WelcomeOnboardingApp.swift */,
+				8B5F8BC72B70CF1A00EC8552 /* AppCoordinator */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -152,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				8BB4C0B42B6A9BCC00DC71E2 /* UIOnboardingFeature.swift */,
+				8BAC3B452B6FBFFE0015CE9F /* UIOnboardingFeatureCheckBox.swift */,
 				8BB4C0B22B6A9BB000DC71E2 /* UIOnboardingViewConfiguration.swift */,
 				8BB4C0C82B6AA30D00DC71E2 /* UIOnboardingBottomBarConfiguration.swift */,
 			);
@@ -179,18 +194,9 @@
 			isa = PBXGroup;
 			children = (
 				8BB4C0C32B6AA26F00DC71E2 /* UIOnboardingBottomBar.swift */,
-				8BB4C0C62B6AA2DC00DC71E2 /* UIOnboardingPermissionRow.swift */,
+				8B5F8BC12B70CA5500EC8552 /* UIOnboardingRows */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		A822C30D612B3126E37FED4D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				4624330A2C608D3AB8C8B3F4 /* Pods-WelcomeOnboarding-app.debug.xcconfig */,
-				DEF0BA97A821B286F6B0F282 /* Pods-WelcomeOnboarding-app.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,7 +206,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BB4C0AA2B6A994300DC71E2 /* Build configuration list for PBXNativeTarget "WelcomeOnboarding-app" */;
 			buildPhases = (
-				F0520E79094D7BB97CB74C4B /* [CP] Check Pods Manifest.lock */,
 				8BB4C0982B6A994100DC71E2 /* Sources */,
 				8BB4C0992B6A994100DC71E2 /* Frameworks */,
 				8BB4C09A2B6A994100DC71E2 /* Resources */,
@@ -211,6 +216,9 @@
 			dependencies = (
 			);
 			name = "WelcomeOnboarding-app";
+			packageProductDependencies = (
+				8B5F8BC52B70CE8500EC8552 /* FlowStacks */,
+			);
 			productName = "WelcomeOnboarding-app";
 			productReference = 8BB4C09C2B6A994100DC71E2 /* WelcomeOnboarding-app.app */;
 			productType = "com.apple.product-type.application";
@@ -239,6 +247,9 @@
 				Base,
 			);
 			mainGroup = 8BB4C0932B6A994100DC71E2;
+			packageReferences = (
+				8B5F8BC42B70CE8500EC8552 /* XCRemoteSwiftPackageReference "FlowStacks" */,
+			);
 			productRefGroup = 8BB4C09D2B6A994100DC71E2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -281,28 +292,6 @@
 			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n";
 			showEnvVarsInLog = 0;
 		};
-		F0520E79094D7BB97CB74C4B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WelcomeOnboarding-app-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -314,13 +303,17 @@
 				8BB4C0BF2B6A9CD800DC71E2 /* WelcomePageConfiguration.swift in Sources */,
 				8BB4C0A22B6A994100DC71E2 /* WelcomeContentView.swift in Sources */,
 				8BB4C0B52B6A9BCC00DC71E2 /* UIOnboardingFeature.swift in Sources */,
+				8B5F8BCB2B70CF6600EC8552 /* AppCoordinator.swift in Sources */,
 				8BB4C0C92B6AA30D00DC71E2 /* UIOnboardingBottomBarConfiguration.swift in Sources */,
 				8BB4C0B32B6A9BB000DC71E2 /* UIOnboardingViewConfiguration.swift in Sources */,
 				8BB4C0A02B6A994100DC71E2 /* WelcomeOnboardingApp.swift in Sources */,
+				8B5F8BC32B70CA6100EC8552 /* UIOnboardingPermissionRowCheckBox.swift in Sources */,
 				8BB4C0C42B6AA26F00DC71E2 /* UIOnboardingBottomBar.swift in Sources */,
 				8BAC3B422B6E72060015CE9F /* LanguagePageConfiguration.swift in Sources */,
 				8BB4C0C72B6AA2DC00DC71E2 /* UIOnboardingPermissionRow.swift in Sources */,
 				8BAC3B442B6E72F90015CE9F /* LanguageContentView.swift in Sources */,
+				8B5F8BC92B70CF2800EC8552 /* AppCoordinatorViewModel.swift in Sources */,
+				8BAC3B462B6FBFFE0015CE9F /* UIOnboardingFeatureCheckBox.swift in Sources */,
 				8BB4C0B92B6A9C5900DC71E2 /* UIOnboardingContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,7 +442,6 @@
 		};
 		8BB4C0AB2B6A994300DC71E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4624330A2C608D3AB8C8B3F4 /* Pods-WelcomeOnboarding-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -485,7 +477,6 @@
 		};
 		8BB4C0AC2B6A994300DC71E2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DEF0BA97A821B286F6B0F282 /* Pods-WelcomeOnboarding-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -541,6 +532,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8B5F8BC42B70CE8500EC8552 /* XCRemoteSwiftPackageReference "FlowStacks" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/johnpatrickmorgan/FlowStacks";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8B5F8BC52B70CE8500EC8552 /* FlowStacks */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B5F8BC42B70CE8500EC8552 /* XCRemoteSwiftPackageReference "FlowStacks" */;
+			productName = FlowStacks;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8BB4C0942B6A994100DC71E2 /* Project object */;
 }

@@ -22,8 +22,8 @@ extension WelcomeOnboarding {
 
     // MARK: - OnboardingViewRepresentable UIOnboardingHelper
     private struct LanguagePageConfiguration: UIOnboardingConfiguratable {
-        static func setUpIcon() -> String {
-            let iconName = "" // 🏳️
+        static func setUpIcon() -> UIImage {
+            let iconName = UIImage(named: "") ?? .init()
             return iconName
         }
 
@@ -33,32 +33,40 @@ extension WelcomeOnboarding {
         }
 
         static func setUpSecondTitleLine() -> String {
-            let iconName = "" // 🏳️
+            let iconName = ""
             return iconName
         }
 
-        static func setUpFeatures() -> [UIOnboardingFeature] {
-            [
+        static func setUpFeatures() -> [UIOnboardingViewConfiguration.Feature] {
+            var features: [UIOnboardingViewConfiguration.Feature] = .init()
+            
+            features.append(.checkBox([
                 .init(
-                    icon: "englandLangIcon",
+                    icon: UIImage(named: "englandLangIcon") ?? .init(),
                     title: "English",
-                    description: ""
+                    description: "",
+                    selected: true
                 ),
                 .init(
-                    icon: "germanyLangIcon",
+                    icon: UIImage(named: "germanyLangIcon") ?? .init(),
                     title: "Germany",
-                    description: ""
+                    description: "",
+                    selected: false
                 ),
                 .init(
-                    icon: "italyLangIcon",
+                    icon: UIImage(named: "italyLangIcon") ?? .init(),
                     title: "Italian",
-                    description: ""
+                    description: "",
+                    selected: false
                 ),
-                .init(icon: "sloveniaLangIcon",
+                .init(icon: UIImage(named: "sloveniaLangIcon") ?? .init(),
                       title: "Slovenian",
-                      description: ""
+                      description: "",
+                      selected: false
                      )
-            ]
+            ]))
+
+            return features
         }
 
         static func setUpBottomBar() -> UIOnboardingBottomBarConfiguration {

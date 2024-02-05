@@ -7,14 +7,19 @@
 
 import SwiftUI
 
-public struct UIOnboardingFeature {
+public struct UIOnboardingFeature: Identifiable {
     public let id = UUID()
-    var icon: String
+    var icon: UIImage
     var iconTint: Color
     var title: String
     var description: String
 
-    public init(icon: String, iconTint: Color = .init(uiColor: UIColor.label), title: String, description: String) {
+    public init(
+        icon: UIImage,
+        iconTint: Color = .init(uiColor: UIColor.label),
+        title: String,
+        description: String
+    ) {
         self.icon = icon
         self.iconTint = iconTint
         self.title = title

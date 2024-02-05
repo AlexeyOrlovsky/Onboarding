@@ -11,4 +11,14 @@ public struct UIOnboardingBottomBarConfiguration {
     var icon: String
     var subtitle: String
     var buttonText: String
+
+    public init(
+        icon: String,
+        subtitle: String,
+        buttonText: String
+    ) {
+        self.icon = icon
+        self.subtitle = subtitle
+        self.buttonText = buttonText
+    }
 }

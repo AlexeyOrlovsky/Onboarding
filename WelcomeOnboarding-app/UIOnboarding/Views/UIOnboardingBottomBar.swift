@@ -12,6 +12,7 @@ struct UIOnboardingBottomBar: View {
     let reader: GeometryProxy
 
     @Binding var showContent: Bool
+    @Binding var show: (() -> Void)?
 
     var body: some View {
         content()
@@ -37,7 +38,8 @@ extension UIOnboardingBottomBar {
                     }
                     VStack(alignment: .center) {
                         Button {
-                            //
+                            show?()
+                            print("Continue Button tapped")
                         } label: {
                             Text(bottomBar.buttonText)
                                 .font(.system(size: reader.size.height * (1 / 42)))

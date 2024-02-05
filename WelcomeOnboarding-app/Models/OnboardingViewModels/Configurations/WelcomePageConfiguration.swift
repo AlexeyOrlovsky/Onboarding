@@ -22,8 +22,8 @@ extension WelcomeOnboarding {
 
     // MARK: - OnboardingViewRepresentable UIOnboardingHelper
     private struct WelcomePageConfiguration: UIOnboardingConfiguratable {
-        static func setUpIcon() -> String {
-            let iconName = "appIcon.dev"
+        static func setUpIcon() -> UIImage {
+            let iconName = UIImage(named: "appIcon.dev") ?? .init()
             return iconName
         }
 
@@ -37,24 +37,31 @@ extension WelcomeOnboarding {
             return iconName
         }
 
-        static func setUpFeatures() -> [UIOnboardingFeature] {
-            [
-                .init(
-                    icon: "bluetoothIcon",
-                    title: "Allow to use bluetooth connection",
-                    description: "It's needed to scan nearby beacons and present different scenarios to you"
-                ),
-                .init(
-                    icon: "location",
-                    title: "Allow to use location updates",
-                    description: "It's needed to scan nearby beacons and present different scenarios to you"
-                ),
-                .init(
-                    icon: "app.badge",
-                    title: "Allow to send notifications",
-                    description: "It's needed to send notifications if beacons nearby"
-                )
-            ]
+        static func setUpFeatures() -> [UIOnboardingViewConfiguration.Feature] {
+            var features: [UIOnboardingViewConfiguration.Feature] = .init()
+
+            features.append(
+                .plain(
+                [
+                    .init(
+                        icon: UIImage(named: "bluetoothIcon") ?? .init(),
+                        title: "Allow to use bluetooth connection",
+                        description: "It's needed to scan nearby beacons and present different scenarios to you"
+                    ),
+                    .init(
+                        icon: UIImage(systemName: "location") ?? .init(),
+                        title: "Allow to use location updates",
+                        description: "It's needed to scan nearby beacons and present different scenarios to you"
+                    ),
+                    .init(
+                        icon: UIImage(systemName: "app.badge") ?? .init(),
+                        title: "Allow to send notifications",
+                        description: "It's needed to send notifications if beacons nearby"
+                    )
+                ]
+            ))
+
+            return features
         }
 
         static func setUpBottomBar() -> UIOnboardingBottomBarConfiguration {
