@@ -12,7 +12,7 @@ protocol UIOnboardingConfiguratable {
     static func setUpIcon() -> String
     static func setUpFirstTitleLine() -> String
     static func setUpSecondTitleLine() -> String
-    static func setUpFeatures() -> [UIOnboardingFeature] // [UIOnboardingViewConfiguration.Feature]
+    static func setUpFeatures() -> [UIOnboardingViewConfiguration.Feature]
     static func setUpBottomBar() -> UIOnboardingBottomBarConfiguration
 }
 

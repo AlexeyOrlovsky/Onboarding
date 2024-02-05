@@ -37,28 +37,35 @@ extension WelcomeOnboarding {
             return iconName
         }
 
-        static func setUpFeatures() -> [UIOnboardingFeature] {
-            [
-                .init(
-                    icon: "englandLangIcon",
-                    title: "English",
-                    description: ""
-                ),
-                .init(
-                    icon: "germanyLangIcon",
-                    title: "Germany",
-                    description: ""
-                ),
-                .init(
-                    icon: "italyLangIcon",
-                    title: "Italian",
-                    description: ""
-                ),
-                .init(icon: "sloveniaLangIcon",
-                      title: "Slovenian",
-                      description: ""
-                     )
-            ]
+        static func setUpFeatures() -> [UIOnboardingViewConfiguration.Feature] {
+            var features: [UIOnboardingViewConfiguration.Feature] = .init()
+
+            features.append(.checkBox(
+                [
+                    .init(
+                        icon: "englandLangIcon",
+                        title: "English",
+                        description: "",
+                        selected: true
+                    ),
+                    .init(
+                        icon: "germanyLangIcon",
+                        title: "Germany",
+                        description: ""
+                    ),
+                    .init(
+                        icon: "italyLangIcon",
+                        title: "Italian",
+                        description: ""
+                    ),
+                    .init(icon: "sloveniaLangIcon",
+                          title: "Slovenian",
+                          description: ""
+                         )
+                ]
+            ))
+
+            return features
         }
 
         static func setUpBottomBar() -> UIOnboardingBottomBarConfiguration {

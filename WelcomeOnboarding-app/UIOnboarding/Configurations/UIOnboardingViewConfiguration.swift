@@ -11,35 +11,26 @@ import SwiftUI
 public struct UIOnboardingViewConfiguration {
     // MARK: - Feature
     public enum Feature {
-        case plain(UIOnboardingFeature)
-        // case checkBox(UIOnboardingFeatureCheckBox)
-    }
-
-    // MARK: - TableSelectingType
-    public enum TableSelectingType {
-        case single
-        case multiple
+        case plain([UIOnboardingFeature])
+        case checkBox([UIOnboardingFeatureCheckBox])
     }
 
     // MARK: - Properties
     public var appIcon: String
     public var firstTitleLine: String
     public var secondTitleLine: String
-    // public var features: [Feature] // 🏳️
-    public var features: [UIOnboardingFeature]
+    public var features: [Feature]
     public var bottomBar: UIOnboardingBottomBarConfiguration
     public var defaultSelection: IndexPath
-    public var selectingType: TableSelectingType
 
     // MARK: - Init
     public init(
         appIcon: String,
         firstTitleLine: String,
         secondTitleLine: String,
-        features: [UIOnboardingFeature],
+        features: [Feature],
         bottomBar: UIOnboardingBottomBarConfiguration,
-        defaultSelection: IndexPath = .init(row: 0, section: 0),
-        selectingType: TableSelectingType = .single
+        defaultSelection: IndexPath = .init(row: 0, section: 0)
     ) {
         self.appIcon = appIcon
         self.firstTitleLine = firstTitleLine
@@ -47,6 +38,16 @@ public struct UIOnboardingViewConfiguration {
         self.features = features
         self.bottomBar = bottomBar
         self.defaultSelection = defaultSelection
-        self.selectingType = selectingType
+    }
+}
+
+extension UIOnboardingViewConfiguration.Feature: Identifiable {
+    public var id: UUID {
+        switch self {
+            case .plain(let onboardingFeatures):
+                return onboardingFeatures.first?.id ?? UUID()
+            case .checkBox(let checkBoxFeatures):
+                return checkBoxFeatures.first?.id ?? UUID()
+        }
     }
 }
