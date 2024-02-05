@@ -9,7 +9,6 @@ import SwiftUI
 
 // MARK: - UIOnboardingViewConfiguration
 public struct UIOnboardingViewConfiguration {
-
     // MARK: - Feature
     public enum Feature {
         case plain([UIOnboardingFeature])
