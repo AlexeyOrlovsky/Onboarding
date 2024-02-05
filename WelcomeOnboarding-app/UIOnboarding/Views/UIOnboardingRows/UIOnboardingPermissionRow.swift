@@ -11,6 +11,7 @@ struct UIOnboardingPermissionRow: View {
     let permission: UIOnboardingFeature
     let reader: GeometryProxy
 
+    // MARK: - Properties
     @Binding var iconRowSize: CGFloat
     @Binding var iconPadding: Bool
 
@@ -19,6 +20,7 @@ struct UIOnboardingPermissionRow: View {
     }
 }
 
+// MARK: - UIOnboardingPermissionRow
 extension UIOnboardingPermissionRow {
     @ViewBuilder private func content() -> some View {
         HStack(alignment: .top, spacing: 10) {

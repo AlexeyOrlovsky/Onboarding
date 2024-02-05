@@ -20,7 +20,7 @@ extension WelcomeOnboarding {
         )
     }
 
-    // MARK: - OnboardingViewRepresentable UIOnboardingHelper
+    // MARK: - Content
     private struct WelcomePageConfiguration: UIOnboardingConfiguratable {
         static func setUpIcon() -> UIImage {
             let iconName = UIImage(named: "appIcon.dev") ?? .init()
@@ -28,13 +28,13 @@ extension WelcomeOnboarding {
         }
 
         static func setUpFirstTitleLine() -> String {
-            let iconName = "Welcome to"
-            return iconName
+            let title = "Welcome to"
+            return title
         }
 
         static func setUpSecondTitleLine() -> String {
-            let iconName = "ANY"
-            return iconName
+            let title = "ANY"
+            return title
         }
 
         static func setUpFeatures() -> [UIOnboardingViewConfiguration.Feature] {
