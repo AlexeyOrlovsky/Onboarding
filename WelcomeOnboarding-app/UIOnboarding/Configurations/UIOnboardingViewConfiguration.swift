@@ -16,12 +16,12 @@ public struct UIOnboardingViewConfiguration {
     }
 
     // MARK: - Properties
-    public var appIcon: UIImage
-    public var firstTitleLine: String
-    public var secondTitleLine: String
-    public var features: [Feature]
-    public var bottomBar: UIOnboardingBottomBarConfiguration
-    public var defaultSelection: IndexPath
+    public let appIcon: UIImage
+    public let firstTitleLine: String
+    public let secondTitleLine: String
+    public let features: [Feature]
+    public let bottomBar: UIOnboardingBottomBarConfiguration
+    public let defaultSelection: IndexPath
 
     // MARK: - Init
     public init(

@@ -9,10 +9,10 @@ import SwiftUI
 
 public struct UIOnboardingFeature: Identifiable {
     public let id = UUID()
-    var icon: UIImage
-    var iconTint: Color
-    var title: String
-    var description: String
+    let icon: UIImage
+    let iconTint: Color
+    let title: String
+    let description: String
 
     public init(
         icon: UIImage,

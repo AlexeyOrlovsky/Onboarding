@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WelcomeContentView: View {
     private var withConfiguration: UIOnboardingViewConfiguration {
-        UIOnboardingViewConfiguration.Onboarding.permissionsPage()
+        UIOnboardingViewConfiguration.WelcomeOnboarding.permissionsPage() // Onboarding
     }
 
     var body: some View {
