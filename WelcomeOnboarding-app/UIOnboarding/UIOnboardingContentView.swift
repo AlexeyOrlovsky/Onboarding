@@ -49,13 +49,13 @@ struct UIOnboardingContentView: View {
 }
 
 // MARK: - Content
-extension UIOnboardingContentView {
-    @ViewBuilder private func content() -> some View {
+private extension UIOnboardingContentView {
+    @ViewBuilder func content() -> some View {
         GeometryReader { reader in
             ZStack {
                 Color(UIColor.systemGray6)
                     .offset(y: showJumpBackground ? 1000 : 0)
-                    .animation(Animation.linear(duration: 0.5))
+                    .animation(Animation.linear(duration: 0.5), value: UUID())
 
                 VStack(spacing: 0) {
                     ScrollView(showsIndicators: false) {
@@ -66,7 +66,7 @@ extension UIOnboardingContentView {
                             .opacity(showContent ? 1 : 0)
                             .scaleEffect(zoomTitle ? 1 : 0.5)
                             .padding(.top, reader.size.height * -(alignmentFeatures))
-                            .animation(.easeInOut(duration: 0.3))
+                            .animation(Animation.easeInOut(duration: 0.3), value: UUID())
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
@@ -78,7 +78,7 @@ extension UIOnboardingContentView {
                         .frame(maxWidth: .infinity)
                         .background(showBottomBarBackground ? .ultraThinMaterial : .regular)
                         .opacity(showContent ? 1.0 : 0)
-                        .animation(.easeInOut(duration: 0.3))
+                        .animation(Animation.easeInOut(duration: 0.3), value: UUID())
                 }
                 .padding([.top, .bottom], 10)
 
@@ -89,8 +89,8 @@ extension UIOnboardingContentView {
 }
 
 // MARK: - Header
-extension UIOnboardingContentView {
-    @ViewBuilder private func header(reader: GeometryProxy) -> some View {
+private extension UIOnboardingContentView {
+    @ViewBuilder func header(reader: GeometryProxy) -> some View {
         VStack(alignment: .leading) {
 
             Image(uiImage: withConfiguration.appIcon)
@@ -112,18 +112,18 @@ extension UIOnboardingContentView {
         .padding(.top, reader.size.height * (headerAlignment))
         .scaleEffect(zoomTitle ? 1 : 0.5)
         .offset(y: moveToTopTitle ? reader.size.height * -(1 / 3.5) : 0)
-        .animation(.easeInOut(duration: 1.0))
+        .animation(Animation.easeInOut(duration: 1.0), value: UUID())
     }
 }
 
 // MARK: - Feature
-extension UIOnboardingContentView {
-    @ViewBuilder private func feature(reader: GeometryProxy) -> some View {
+private extension UIOnboardingContentView {
+    @ViewBuilder func feature(reader: GeometryProxy) -> some View {
         VStack(alignment: .leading) {
             ForEach(withConfiguration.features) { feature in
                 switch feature {
                     case .plain(let onboardingFeatures):
-                        ForEach(onboardingFeatures, id: \.id) { permission in
+                        ForEach(onboardingFeatures) { permission in
                             UIOnboardingPermissionRow(permission: permission,
                                                       reader: reader,
                                                       iconRowSize: $iconRowSize,
@@ -131,7 +131,7 @@ extension UIOnboardingContentView {
                             )
                         }
                     case.checkBox(let checkBoxFeatures):
-                        ForEach(checkBoxFeatures.indices, id: \.self) { index in
+                        ForEach(checkBoxFeatures.indices) { index in
                             Button {
                                 checkBoxFeatures.indices.forEach { checkBoxFeatures[$0].selected = false }
                                 checkBoxFeatures[index].selected = true
@@ -144,7 +144,6 @@ extension UIOnboardingContentView {
                                 .padding(.top, reader.size.height * (spacingBetwinFeatures))
                             }
                             .tint(Color(UIColor.label))
-                            // .contentShape(Rectangle())
                             .buttonStyle(PlainButtonStyle())
                         }
                 }
@@ -154,11 +153,13 @@ extension UIOnboardingContentView {
 }
 
 // MARK: - Bottom Bar
-extension UIOnboardingContentView {
-    @ViewBuilder private func bottomBar(reader: GeometryProxy) -> some View {
-        UIOnboardingBottomBar(bottomBar: self.withConfiguration.bottomBar,
-                              reader: reader, showContent: self.$showContent,
-                              show: $navigator
+private extension UIOnboardingContentView {
+    @ViewBuilder func bottomBar(reader: GeometryProxy) -> some View {
+        UIOnboardingBottomBar(
+            bottomBar: self.withConfiguration.bottomBar,
+            reader: reader,
+            showContent: self.$showContent,
+            show: $navigator
         )
         .padding(.bottom, 20)
     }

@@ -8,9 +8,9 @@
 import SwiftUI
 
 public struct UIOnboardingBottomBarConfiguration {
-    var icon: String
-    var subtitle: String
-    var buttonText: String
+    let icon: String
+    let subtitle: String
+    let buttonText: String
 
     public init(
         icon: String,

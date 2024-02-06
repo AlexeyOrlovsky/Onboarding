@@ -8,11 +8,11 @@
 import SwiftUI
 
 public class UIOnboardingFeatureCheckBox: Identifiable, ObservableObject {
-    public var id = UUID()
-    var icon: UIImage
-    var iconTint: Color
-    var title: String
-    var description: String
+    public let id = UUID()
+    let icon: UIImage
+    let iconTint: Color
+    let title: String
+    let description: String
     @Published var selected: Bool
 
     public init(

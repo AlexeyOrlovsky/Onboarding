@@ -21,13 +21,12 @@ struct UIOnboardingPermissionRow: View {
 }
 
 // MARK: - UIOnboardingPermissionRow
-extension UIOnboardingPermissionRow {
-    @ViewBuilder private func content() -> some View {
+private extension UIOnboardingPermissionRow {
+    @ViewBuilder func content() -> some View {
         HStack(alignment: .top, spacing: 10) {
             Image(uiImage: permission.icon)
                 .resizable()
-                .frame(width: reader.size.height * (iconRowSize), height: reader.size.height *
-                       (iconRowSize))
+                .frame(width: reader.size.height * (iconRowSize), height: reader.size.height * (iconRowSize))
             HStack {
                 VStack(alignment: .leading) {
                     Text(permission.title)

@@ -11,6 +11,7 @@ struct UIOnboardingBottomBar: View {
     var bottomBar: UIOnboardingBottomBarConfiguration
     let reader: GeometryProxy
 
+    // MARK: - Properties
     @Binding var showContent: Bool
     @Binding var show: (() -> Void)?
 
@@ -20,8 +21,8 @@ struct UIOnboardingBottomBar: View {
 }
 
 // MARK: - UIOnboardingBottomBar
-extension UIOnboardingBottomBar {
-    @ViewBuilder private func content() -> some View {
+private extension UIOnboardingBottomBar {
+    @ViewBuilder func content() -> some View {
         VStack {
             VStack {
                 Spacer()

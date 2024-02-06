@@ -21,8 +21,8 @@ struct UIOnboardingPermissionRowCheckBox: View {
 }
 
 // MARK: - UIOnboardingPermissionRowCheckBox
-extension UIOnboardingPermissionRowCheckBox {
-    @ViewBuilder private func content() -> some View {
+private extension UIOnboardingPermissionRowCheckBox {
+    @ViewBuilder func content() -> some View {
         HStack(alignment: .top, spacing: 10) {
             Image(uiImage: permission.icon)
                 .resizable()
@@ -37,7 +37,6 @@ extension UIOnboardingPermissionRowCheckBox {
                         .fontWeight(.regular)
                 }
                 .padding(.top, iconPadding ? reader.size.height * (1 / 60) : 0)
-
                 Spacer()
 
                 permission.selected ? Image(systemName: "checkmark")
