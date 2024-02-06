@@ -124,7 +124,7 @@ private extension UIOnboardingContentView {
                 switch feature {
                     case .plain(let onboardingFeatures):
                         ForEach(onboardingFeatures) { permission in
-                            UIOnboardingPermissionRow(permission: permission,
+                            UIOnboardingRow(permission: permission,
                                                       reader: reader,
                                                       iconRowSize: $iconRowSize,
                                                       iconPadding: $iconRowSpacing
@@ -136,7 +136,7 @@ private extension UIOnboardingContentView {
                                 checkBoxFeatures.indices.forEach { checkBoxFeatures[$0].selected = false }
                                 checkBoxFeatures[index].selected = true
                             } label: {
-                                UIOnboardingPermissionRowCheckBox(permission: checkBoxFeatures[index],
+                                UIOnboardingRowCheckBox(permission: checkBoxFeatures[index],
                                                                   reader: reader,
                                                                   iconRowSize: $iconRowSize,
                                                                   iconPadding: $iconRowSpacing

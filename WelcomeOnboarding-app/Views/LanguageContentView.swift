@@ -10,7 +10,7 @@ import FlowStacks
 
 struct LanguageContentView: View {
     private var withConfiguration: UIOnboardingViewConfiguration {
-        UIOnboardingViewConfiguration.Onboarding.languagesPage()
+        UIOnboardingViewConfiguration.LanguagesOnboarding.languagesPage() // Onboarding
     }
 
     @EnvironmentObject var navigator: AppFlowNavigator

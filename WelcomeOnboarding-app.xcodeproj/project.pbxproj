@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8B5F8BC32B70CA6100EC8552 /* UIOnboardingPermissionRowCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F8BC22B70CA6100EC8552 /* UIOnboardingPermissionRowCheckBox.swift */; };
+		8B5F8BC32B70CA6100EC8552 /* UIOnboardingRowCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F8BC22B70CA6100EC8552 /* UIOnboardingRowCheckBox.swift */; };
 		8B5F8BC62B70CE8500EC8552 /* FlowStacks in Frameworks */ = {isa = PBXBuildFile; productRef = 8B5F8BC52B70CE8500EC8552 /* FlowStacks */; };
 		8B5F8BC92B70CF2800EC8552 /* AppCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F8BC82B70CF2800EC8552 /* AppCoordinatorViewModel.swift */; };
 		8B5F8BCB2B70CF6600EC8552 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F8BCA2B70CF6600EC8552 /* AppCoordinator.swift */; };
@@ -25,12 +25,12 @@
 		8BB4C0BD2B6A9C9E00DC71E2 /* UIOnboardingConfiguratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB4C0BC2B6A9C9E00DC71E2 /* UIOnboardingConfiguratable.swift */; };
 		8BB4C0BF2B6A9CD800DC71E2 /* WelcomePageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB4C0BE2B6A9CD800DC71E2 /* WelcomePageConfiguration.swift */; };
 		8BB4C0C42B6AA26F00DC71E2 /* UIOnboardingBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB4C0C32B6AA26F00DC71E2 /* UIOnboardingBottomBar.swift */; };
-		8BB4C0C72B6AA2DC00DC71E2 /* UIOnboardingPermissionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB4C0C62B6AA2DC00DC71E2 /* UIOnboardingPermissionRow.swift */; };
+		8BB4C0C72B6AA2DC00DC71E2 /* UIOnboardingRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB4C0C62B6AA2DC00DC71E2 /* UIOnboardingRow.swift */; };
 		8BB4C0C92B6AA30D00DC71E2 /* UIOnboardingBottomBarConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB4C0C82B6AA30D00DC71E2 /* UIOnboardingBottomBarConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8B5F8BC22B70CA6100EC8552 /* UIOnboardingPermissionRowCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingPermissionRowCheckBox.swift; sourceTree = "<group>"; };
+		8B5F8BC22B70CA6100EC8552 /* UIOnboardingRowCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingRowCheckBox.swift; sourceTree = "<group>"; };
 		8B5F8BC82B70CF2800EC8552 /* AppCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorViewModel.swift; sourceTree = "<group>"; };
 		8B5F8BCA2B70CF6600EC8552 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		8B713E672B712D7B0067CAF6 /* Feature+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Feature+Extension.swift"; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 		8BB4C0BC2B6A9C9E00DC71E2 /* UIOnboardingConfiguratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingConfiguratable.swift; sourceTree = "<group>"; };
 		8BB4C0BE2B6A9CD800DC71E2 /* WelcomePageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageConfiguration.swift; sourceTree = "<group>"; };
 		8BB4C0C32B6AA26F00DC71E2 /* UIOnboardingBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingBottomBar.swift; sourceTree = "<group>"; };
-		8BB4C0C62B6AA2DC00DC71E2 /* UIOnboardingPermissionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingPermissionRow.swift; sourceTree = "<group>"; };
+		8BB4C0C62B6AA2DC00DC71E2 /* UIOnboardingRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingRow.swift; sourceTree = "<group>"; };
 		8BB4C0C82B6AA30D00DC71E2 /* UIOnboardingBottomBarConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingBottomBarConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,8 +67,8 @@
 		8B5F8BC12B70CA5500EC8552 /* UIOnboardingRows */ = {
 			isa = PBXGroup;
 			children = (
-				8BB4C0C62B6AA2DC00DC71E2 /* UIOnboardingPermissionRow.swift */,
-				8B5F8BC22B70CA6100EC8552 /* UIOnboardingPermissionRowCheckBox.swift */,
+				8BB4C0C62B6AA2DC00DC71E2 /* UIOnboardingRow.swift */,
+				8B5F8BC22B70CA6100EC8552 /* UIOnboardingRowCheckBox.swift */,
 			);
 			path = UIOnboardingRows;
 			sourceTree = "<group>";
@@ -327,10 +327,10 @@
 				8BB4C0C92B6AA30D00DC71E2 /* UIOnboardingBottomBarConfiguration.swift in Sources */,
 				8BB4C0B32B6A9BB000DC71E2 /* UIOnboardingViewConfiguration.swift in Sources */,
 				8BB4C0A02B6A994100DC71E2 /* WelcomeOnboardingApp.swift in Sources */,
-				8B5F8BC32B70CA6100EC8552 /* UIOnboardingPermissionRowCheckBox.swift in Sources */,
+				8B5F8BC32B70CA6100EC8552 /* UIOnboardingRowCheckBox.swift in Sources */,
 				8BB4C0C42B6AA26F00DC71E2 /* UIOnboardingBottomBar.swift in Sources */,
 				8BAC3B422B6E72060015CE9F /* LanguagePageConfiguration.swift in Sources */,
-				8BB4C0C72B6AA2DC00DC71E2 /* UIOnboardingPermissionRow.swift in Sources */,
+				8BB4C0C72B6AA2DC00DC71E2 /* UIOnboardingRow.swift in Sources */,
 				8BAC3B442B6E72F90015CE9F /* LanguageContentView.swift in Sources */,
 				8B5F8BC92B70CF2800EC8552 /* AppCoordinatorViewModel.swift in Sources */,
 				8BAC3B462B6FBFFE0015CE9F /* UIOnboardingFeatureCheckBox.swift in Sources */,

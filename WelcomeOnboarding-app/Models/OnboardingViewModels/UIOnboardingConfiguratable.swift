@@ -16,7 +16,13 @@ protocol UIOnboardingConfiguratable {
     static func setUpBottomBar() -> UIOnboardingBottomBarConfiguration
 }
 
+//// MARK: - WelcomeOnboarding
+//extension UIOnboardingViewConfiguration {
+//    enum Onboarding { }
+//}
+
 // MARK: - WelcomeOnboarding
 extension UIOnboardingViewConfiguration {
-    enum Onboarding { }
+    enum WelcomeOnboarding { }
+    enum LanguagesOnboarding { }
 }
