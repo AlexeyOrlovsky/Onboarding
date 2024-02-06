@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-private typealias WelcomeOnboarding = UIOnboardingViewConfiguration.LanguagesOnboarding // Onboarding
+private typealias WelcomeOnboarding = UIOnboardingViewConfiguration.LanguagesOnboarding
 
 extension WelcomeOnboarding {
     static func languagesPage() -> UIOnboardingViewConfiguration {
