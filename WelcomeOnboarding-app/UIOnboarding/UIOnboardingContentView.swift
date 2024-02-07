@@ -21,7 +21,6 @@ struct UIOnboardingContentView: View {
 
     @Binding var showJumpBackground: Bool
     @Binding var iconRowSize: CGFloat
-    // @Binding var iconRowSpacing: Bool
 
     // MARK: - Properties
     @State private var zoomTitle: Bool = false
