@@ -27,9 +27,6 @@ struct UIOnboardingContentView: View {
     @State private var moveToTopTitle: Bool = false
     @State private var showContent: Bool = false
 
-    @State private var iconPlainRowSpacing = false
-    @State private var iconCheckBoxRowSpacing = true
-
     var body: some View {
         content()
             .ignoresSafeArea()
@@ -131,7 +128,7 @@ private extension UIOnboardingContentView {
                             permission: plainFeature,
                             reader: reader,
                             iconRowSize: $iconRowSize,
-                            iconPadding: iconPlainRowSpacing
+                            iconPadding: false
                         )
                     case .checkBox(let checkBoxFeature):
                         Button {
@@ -152,7 +149,7 @@ private extension UIOnboardingContentView {
                                 permission: checkBoxFeature,
                                 reader: reader,
                                 iconRowSize: $iconRowSize,
-                                iconPadding: iconCheckBoxRowSpacing
+                                iconPadding: true
                             )
                             .padding(.top, reader.size.height * (spacingBetwinFeatures))
                         }

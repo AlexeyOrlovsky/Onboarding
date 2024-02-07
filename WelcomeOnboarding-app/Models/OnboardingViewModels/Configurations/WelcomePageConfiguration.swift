@@ -55,7 +55,7 @@ extension WelcomeOnboarding {
                 ),
                 .plain(
                     .init(
-                        icon: UIImage(systemName: "app.badge") ?? .init(),
+                        icon: UIImage(named: "badge") ?? .init(),
                         title: "Allow to send notifications",
                         description: "It's needed to send notifications if beacons nearby"
                     )
