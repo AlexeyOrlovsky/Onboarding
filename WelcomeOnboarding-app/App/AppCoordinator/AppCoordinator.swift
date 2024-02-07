@@ -14,9 +14,9 @@ typealias AppFlowNavigator = FlowNavigator<AppCoordinatorViewModel.Screen>
 struct AppCoordinator: View {
     @StateObject var viewModel = AppCoordinatorViewModel()
 
-     // MARK: - Properties
-     private let languageView = LanguageContentView()
-     private let welcomeView = WelcomeContentView()
+    // MARK: - Properties
+    private let languageView = LanguageContentView()
+    private let welcomeView = WelcomeContentView()
 
     var body: some View {
         Router($viewModel.routes) { screen, _ in

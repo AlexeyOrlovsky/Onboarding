@@ -11,21 +11,24 @@ struct UIOnboardingContentView: View {
     var withConfiguration: UIOnboardingViewConfiguration
 
     // MARK: - Config Settings
-    @State var headerTitleSize: CGFloat
-    @State var headerAlignment: CGFloat
-    @State var showJumpBackground: Bool
-    @State var alignmentFeatures: CGFloat
-    @State var spacingBetwinFeatures: CGFloat
-    @State var iconRowSize: CGFloat
-    @State var showBottomBarBackground: Bool
-    @State var iconRowSpacing: Bool
-    @State var navigator: (() -> Void)?
+    let headerTitleSize: CGFloat
+    let headerAlignment: CGFloat
+    let alignmentFeatures: CGFloat
+    let spacingBetwinFeatures: CGFloat
+    let showBottomBarBackground: Bool
+    let navigator: (() -> Void)?
+    let multiSelect: Bool
+
+    @Binding var showJumpBackground: Bool
+    @Binding var iconRowSize: CGFloat
 
     // MARK: - Properties
     @State private var zoomTitle: Bool = false
     @State private var moveToTopTitle: Bool = false
     @State private var showContent: Bool = false
-    @State private var showOnboardingPermissions: Bool = false
+
+    @State private var iconPlainRowSpacing = false
+    @State private var iconCheckBoxRowSpacing = true
 
     var body: some View {
         content()
@@ -120,35 +123,45 @@ private extension UIOnboardingContentView {
 private extension UIOnboardingContentView {
     @ViewBuilder func feature(reader: GeometryProxy) -> some View {
         VStack(alignment: .leading) {
-            ForEach(withConfiguration.features) { feature in
+            Spacer()
+            ForEach(withConfiguration.features, id: \.id) { feature in
                 switch feature {
-                    case .plain(let onboardingFeatures):
-                        ForEach(onboardingFeatures) { permission in
-                            UIOnboardingRow(permission: permission,
-                                                      reader: reader,
-                                                      iconRowSize: $iconRowSize,
-                                                      iconPadding: $iconRowSpacing
-                            )
-                        }
-                    case.checkBox(let checkBoxFeatures):
-                        ForEach(checkBoxFeatures.indices) { index in
-                            Button {
-                                checkBoxFeatures.indices.forEach { checkBoxFeatures[$0].selected = false }
-                                checkBoxFeatures[index].selected = true
-                            } label: {
-                                UIOnboardingRowCheckBox(permission: checkBoxFeatures[index],
-                                                                  reader: reader,
-                                                                  iconRowSize: $iconRowSize,
-                                                                  iconPadding: $iconRowSpacing
-                                )
-                                .padding(.top, reader.size.height * (spacingBetwinFeatures))
+                    case .plain(let plainFeature):
+                        UIOnboardingRow(
+                            permission: plainFeature,
+                            reader: reader,
+                            iconRowSize: $iconRowSize,
+                            iconPadding: iconPlainRowSpacing
+                        )
+                    case .checkBox(let checkBoxFeature):
+                        Button {
+                            if multiSelect == false {
+                                withConfiguration.features.forEach { otherFeature in
+                                    if case .checkBox(let otherCheckBoxFeature) = otherFeature {
+                                        otherCheckBoxFeature.selected = false
+                                    }
+                                }
                             }
-                            .tint(Color(UIColor.label))
-                            .buttonStyle(PlainButtonStyle())
+                            if multiSelect {
+                                checkBoxFeature.selected.toggle()
+                            } else {
+                                checkBoxFeature.selected = true
+                            }
+                        } label: {
+                            UIOnboardingRowCheckBox(
+                                permission: checkBoxFeature,
+                                reader: reader,
+                                iconRowSize: $iconRowSize,
+                                iconPadding: iconCheckBoxRowSpacing
+                            )
+                            .padding(.top, reader.size.height * (spacingBetwinFeatures))
                         }
+                        .tint(Color(UIColor.label))
+                        .buttonStyle(PlainButtonStyle())
                 }
             }
         }
+        .padding(.bottom, reader.size.height * (1 / 5))
     }
 }
 
@@ -158,8 +171,8 @@ private extension UIOnboardingContentView {
         UIOnboardingBottomBar(
             bottomBar: self.withConfiguration.bottomBar,
             reader: reader,
-            showContent: self.$showContent,
-            show: $navigator
+            show: navigator,
+            showContent: self.$showContent
         )
         .padding(.bottom, 20)
     }

@@ -10,23 +10,32 @@ import FlowStacks
 
 struct LanguageContentView: View {
     private var withConfiguration: UIOnboardingViewConfiguration {
-        UIOnboardingViewConfiguration.LanguagesOnboarding.languagesPage()
+        UIOnboardingViewConfiguration.Onboarding.languagesPage()
     }
 
     @EnvironmentObject var navigator: AppFlowNavigator
 
+    @State var headerTitleSize: CGFloat = 1 / 36
+    @State var headerAlignment: CGFloat = 1 / 2.8
+    @State var showJumpBackground: Bool = true
+    @State var alignmentFeatures: CGFloat = 1 / 5
+    @State var spacingBetwinFeatures: CGFloat = 1 / 68
+    @State var iconRowSize: CGFloat = 1 / 18
+    @State var showBottomBarBackground: Bool = false
+    @State var multiSelect: Bool = false
+
     var body: some View {
         UIOnboardingContentView(
             withConfiguration: withConfiguration,
-            headerTitleSize: 1 / 36,
-            headerAlignment: 1 / 2.8,
-            showJumpBackground: true,
-            alignmentFeatures: 1 / 5,
-            spacingBetwinFeatures: 1 / 68,
-            iconRowSize: 1 / 18,
-            showBottomBarBackground: false,
-            iconRowSpacing: true,
-            navigator: { navigator.push(.welcomeView) }
+            headerTitleSize: headerTitleSize,
+            headerAlignment: headerAlignment,
+            alignmentFeatures: alignmentFeatures,
+            spacingBetwinFeatures: spacingBetwinFeatures,
+            showBottomBarBackground: showBottomBarBackground,
+            navigator: { navigator.push(.welcomeView) },
+            multiSelect: multiSelect,
+            showJumpBackground: $showJumpBackground,
+            iconRowSize: $iconRowSize
         )
     }
 }

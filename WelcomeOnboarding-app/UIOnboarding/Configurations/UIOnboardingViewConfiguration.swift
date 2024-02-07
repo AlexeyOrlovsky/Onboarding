@@ -11,8 +11,8 @@ import SwiftUI
 public struct UIOnboardingViewConfiguration {
     // MARK: - Feature
     public enum Feature {
-        case plain([UIOnboardingFeature])
-        case checkBox([UIOnboardingFeatureCheckBox])
+        case plain(UIOnboardingFeature)
+        case checkBox(UIOnboardingFeatureCheckBox)
     }
 
     // MARK: - Properties

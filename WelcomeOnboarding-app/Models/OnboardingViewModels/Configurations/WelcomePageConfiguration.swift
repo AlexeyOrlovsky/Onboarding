@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-private typealias WelcomeOnboarding = UIOnboardingViewConfiguration.WelcomeOnboarding
+private typealias WelcomeOnboarding = UIOnboardingViewConfiguration.Onboarding
 
 extension WelcomeOnboarding {
     static func permissionsPage() -> UIOnboardingViewConfiguration {
@@ -38,30 +38,29 @@ extension WelcomeOnboarding {
         }
 
         static func setUpFeatures() -> [UIOnboardingViewConfiguration.Feature] {
-            var features: [UIOnboardingViewConfiguration.Feature] = .init()
-
-            features.append(
+            [
                 .plain(
-                [
                     .init(
                         icon: UIImage(named: "bluetoothIcon") ?? .init(),
                         title: "Allow to use bluetooth connection",
                         description: "It's needed to scan nearby beacons and present different scenarios to you"
-                    ),
+                    )
+                ),
+                .plain(
                     .init(
                         icon: UIImage(systemName: "location") ?? .init(),
                         title: "Allow to use location updates",
                         description: "It's needed to scan nearby beacons and present different scenarios to you"
-                    ),
+                    )
+                ),
+                .plain(
                     .init(
                         icon: UIImage(systemName: "app.badge") ?? .init(),
                         title: "Allow to send notifications",
                         description: "It's needed to send notifications if beacons nearby"
                     )
-                ]
-            ))
-
-            return features
+                )
+            ]
         }
 
         static func setUpBottomBar() -> UIOnboardingBottomBarConfiguration {
@@ -70,6 +69,11 @@ extension WelcomeOnboarding {
                 subtitle: "Developed and designed for LOT TOV",
                 buttonText: "Continue"
             )
+        }
+
+        static func multiSelect() -> Bool {
+            let option = true
+            return option
         }
     }
 }

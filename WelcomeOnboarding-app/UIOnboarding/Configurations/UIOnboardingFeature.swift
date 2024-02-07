@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct UIOnboardingFeature: Identifiable {
+public struct UIOnboardingFeature: Identifiable, Hashable {
     public let id = UUID()
     let icon: UIImage
     let iconTint: Color

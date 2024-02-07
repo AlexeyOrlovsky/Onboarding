@@ -12,7 +12,7 @@ import FlowStacks
 class AppCoordinatorViewModel: ObservableObject {
     // MARK: - Screen
     enum Screen {
-        case languageView
+        case languageView // language
         case welcomeView
     }
 
