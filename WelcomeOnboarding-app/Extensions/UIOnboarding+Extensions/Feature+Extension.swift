@@ -8,13 +8,13 @@
 import SwiftUI
 
 // MARK: - Extension
-extension UIOnboardingViewConfiguration.Feature: Identifiable {
+extension UIOnboardingViewConfiguration.Feature {
     public var id: UUID {
         switch self {
             case .plain(let onboardingFeatures):
-                return onboardingFeatures.first?.id ?? UUID()
+                return onboardingFeatures.id
             case .checkBox(let checkBoxFeatures):
-                return checkBoxFeatures.first?.id ?? UUID()
+                return checkBoxFeatures.id
         }
     }
 }

@@ -10,10 +10,10 @@ import SwiftUI
 struct UIOnboardingBottomBar: View {
     var bottomBar: UIOnboardingBottomBarConfiguration
     let reader: GeometryProxy
+    let show: (() -> Void)?
 
     // MARK: - Properties
     @Binding var showContent: Bool
-    @Binding var show: (() -> Void)?
 
     var body: some View {
         content()

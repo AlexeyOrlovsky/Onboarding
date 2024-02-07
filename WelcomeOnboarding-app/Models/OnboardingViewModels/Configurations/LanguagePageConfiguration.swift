@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-private typealias WelcomeOnboarding = UIOnboardingViewConfiguration.LanguagesOnboarding
+private typealias WelcomeOnboarding = UIOnboardingViewConfiguration.Onboarding
 
 extension WelcomeOnboarding {
     static func languagesPage() -> UIOnboardingViewConfiguration {
@@ -38,35 +38,39 @@ extension WelcomeOnboarding {
         }
 
         static func setUpFeatures() -> [UIOnboardingViewConfiguration.Feature] {
-            var features: [UIOnboardingViewConfiguration.Feature] = .init()
-
-            features.append(.checkBox([
-                .init(
-                    icon: UIImage(named: "englandLangIcon") ?? .init(),
-                    title: "English",
-                    description: "",
-                    selected: true
+            [
+                .checkBox(
+                    .init(
+                        icon: UIImage(named: "englandLangIcon") ?? .init(),
+                        title: "English",
+                        description: "",
+                        selected: true
+                    )
                 ),
-                .init(
-                    icon: UIImage(named: "germanyLangIcon") ?? .init(),
-                    title: "Germany",
-                    description: "",
-                    selected: false
+                .checkBox(
+                    .init(
+                        icon: UIImage(named: "germanyLangIcon") ?? .init(),
+                        title: "Germany",
+                        description: "",
+                        selected: false
+                    )
                 ),
-                .init(
-                    icon: UIImage(named: "italyLangIcon") ?? .init(),
-                    title: "Italian",
-                    description: "",
-                    selected: false
+                .checkBox(
+                    .init(
+                        icon: UIImage(named: "italyLangIcon") ?? .init(),
+                        title: "Italian",
+                        description: "",
+                        selected: false
+                    )
                 ),
-                .init(icon: UIImage(named: "sloveniaLangIcon") ?? .init(),
-                      title: "Slovenian",
-                      description: "",
-                      selected: false
-                     )
-            ]))
-
-            return features
+                .checkBox(
+                    .init(icon: UIImage(named: "sloveniaLangIcon") ?? .init(),
+                          title: "Slovenian",
+                          description: "",
+                          selected: false
+                         )
+                )
+            ]
         }
 
         static func setUpBottomBar() -> UIOnboardingBottomBarConfiguration {
@@ -75,6 +79,11 @@ extension WelcomeOnboarding {
                 subtitle: "Developed and designed for LOT TOV",
                 buttonText: "Continue"
             )
+        }
+
+        static func multiSelect() -> Bool {
+            let option = false
+            return option
         }
     }
 }

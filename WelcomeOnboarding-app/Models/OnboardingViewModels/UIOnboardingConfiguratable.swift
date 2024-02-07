@@ -18,6 +18,5 @@ protocol UIOnboardingConfiguratable {
 
 // MARK: - WelcomeOnboarding
 extension UIOnboardingViewConfiguration {
-    enum WelcomeOnboarding { }
-    enum LanguagesOnboarding { }
+    enum Onboarding { }
 }

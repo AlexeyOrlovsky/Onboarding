@@ -13,7 +13,7 @@ struct UIOnboardingRow: View {
 
     // MARK: - Properties
     @Binding var iconRowSize: CGFloat
-    @Binding var iconPadding: Bool
+    var iconPadding: Bool
 
     var body: some View {
         content()
