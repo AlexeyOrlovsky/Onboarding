@@ -11,7 +11,6 @@
 		8B5F8BC62B70CE8500EC8552 /* FlowStacks in Frameworks */ = {isa = PBXBuildFile; productRef = 8B5F8BC52B70CE8500EC8552 /* FlowStacks */; };
 		8B5F8BC92B70CF2800EC8552 /* AppCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F8BC82B70CF2800EC8552 /* AppCoordinatorViewModel.swift */; };
 		8B5F8BCB2B70CF6600EC8552 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F8BCA2B70CF6600EC8552 /* AppCoordinator.swift */; };
-		8B713E682B712D7B0067CAF6 /* Feature+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B713E672B712D7B0067CAF6 /* Feature+Extension.swift */; };
 		8BAC3B422B6E72060015CE9F /* LanguagePageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3B412B6E72060015CE9F /* LanguagePageConfiguration.swift */; };
 		8BAC3B442B6E72F90015CE9F /* LanguageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3B432B6E72F90015CE9F /* LanguageContentView.swift */; };
 		8BAC3B462B6FBFFE0015CE9F /* UIOnboardingFeatureCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC3B452B6FBFFE0015CE9F /* UIOnboardingFeatureCheckBox.swift */; };
@@ -33,7 +32,6 @@
 		8B5F8BC22B70CA6100EC8552 /* UIOnboardingRowCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingRowCheckBox.swift; sourceTree = "<group>"; };
 		8B5F8BC82B70CF2800EC8552 /* AppCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorViewModel.swift; sourceTree = "<group>"; };
 		8B5F8BCA2B70CF6600EC8552 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		8B713E672B712D7B0067CAF6 /* Feature+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Feature+Extension.swift"; sourceTree = "<group>"; };
 		8BAC3B412B6E72060015CE9F /* LanguagePageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePageConfiguration.swift; sourceTree = "<group>"; };
 		8BAC3B432B6E72F90015CE9F /* LanguageContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageContentView.swift; sourceTree = "<group>"; };
 		8BAC3B452B6FBFFE0015CE9F /* UIOnboardingFeatureCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingFeatureCheckBox.swift; sourceTree = "<group>"; };
@@ -82,22 +80,6 @@
 			path = AppCoordinator;
 			sourceTree = "<group>";
 		};
-		8B713E662B712D5A0067CAF6 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				8B713E692B712DE10067CAF6 /* UIOnboarding+Extensions */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		8B713E692B712DE10067CAF6 /* UIOnboarding+Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				8B713E672B712D7B0067CAF6 /* Feature+Extension.swift */,
-			);
-			path = "UIOnboarding+Extensions";
-			sourceTree = "<group>";
-		};
 		8BAC3B402B6E71D70015CE9F /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,7 +109,6 @@
 			isa = PBXGroup;
 			children = (
 				8BB4C0AD2B6A9B5500DC71E2 /* App */,
-				8B713E662B712D5A0067CAF6 /* Extensions */,
 				8BB4C0BA2B6A9C7F00DC71E2 /* Models */,
 				8BB4C0AE2B6A9B5E00DC71E2 /* Views */,
 				8BB4C0B02B6A9B7000DC71E2 /* UIOnboarding */,
@@ -318,7 +299,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B713E682B712D7B0067CAF6 /* Feature+Extension.swift in Sources */,
 				8BB4C0BD2B6A9C9E00DC71E2 /* UIOnboardingConfiguratable.swift in Sources */,
 				8BB4C0BF2B6A9CD800DC71E2 /* WelcomePageConfiguration.swift in Sources */,
 				8BB4C0A22B6A994100DC71E2 /* WelcomeContentView.swift in Sources */,

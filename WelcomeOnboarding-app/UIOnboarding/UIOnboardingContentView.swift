@@ -9,24 +9,24 @@ import SwiftUI
 
 struct UIOnboardingContentView: View {
     var withConfiguration: UIOnboardingViewConfiguration
-    let navigator: (() -> Void)? // rename
+    let onNextAction: (() -> Void)?
     let multiSelect: Bool
 
-    var showJumpBackground: Bool // ❓
-//    @Binding var iconRowSize: CGFloat
+    @State var showJumpBackground: Bool
 
     // MARK: - Properties
     @State private var zoomTitle: Bool = false
     @State private var moveToTopTitle: Bool = false
     @State private var showContent: Bool = false
 
+    @State var selected: [UIOnboardingViewConfiguration.Feature] = []
+
     var body: some View {
         content()
             .ignoresSafeArea()
-//            .frame(maxWidth: .infinity, maxHeight: .infinity) // ❓
-            .background(showJumpBackground ? Color(UIColor.systemBackground) : Color(UIColor.systemBackground))
+            .background(Color(UIColor.systemBackground))
             .onAppear {
-                // self.showJumpBackground = false
+                self.showJumpBackground = false
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     withAnimation(.easeInOut(duration: 1.0)) {
@@ -54,22 +54,15 @@ private extension UIOnboardingContentView {
             ZStack {
                 Color(UIColor.systemGray6)
                     .offset(y: showJumpBackground ? 1000 : 0)
-//<<<<<<< Updated upstream
                     .animation(Animation.linear(duration: 0.5), value: UUID())
-//=======
-//                    .animation(Animation.linear(duration: 0.5), value: UUID()) // ❓
-
-// >>>>>>> Stashed changes
                 VStack(spacing: 0) {
                     ScrollView(showsIndicators: false) {
                         header(reader: reader)
 
                         feature(reader: reader)
-                            .frame(width: reader.size.height * (1 / 3))
+                            .frame(width: reader.size.height * 1 / 3)
                             .opacity(showContent ? 1 : 0)
-//                            .scaleEffect(zoomTitle ? 1 : 0.5) // ❓
-                            .padding(.top, reader.size.height * 1 / 10)
-//                            .animation(Animation.easeInOut(duration: 0.3), value: UUID()) // ❓
+                            .padding(.top, reader.size.height * -(1 / 4.8))
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
@@ -78,10 +71,8 @@ private extension UIOnboardingContentView {
                     bottomBar(reader: reader)
                         .frame(height: reader.size.height * (1 / 5.6))
                         .frame(maxWidth: .infinity)
-                        // .background(showBottomBarBackground ? .ultraThinMaterial : .regular)
                         .background(.ultraThinMaterial)
                         .opacity(showContent ? 1.0 : 0)
-//                        .animation(Animation.easeInOut(duration: 0.3), value: UUID()) // ❓
                 }
                 .padding([.top, .bottom], 10)
 
@@ -98,31 +89,24 @@ private extension UIOnboardingContentView {
             Image(uiImage: withConfiguration.appIcon)
                 .resizable()
                 .opacity(zoomTitle ? 1 : 0)
-                .frame(width: reader.size.height * (1 / 12), height: reader.size.height *
-                       (1 / 12))
+                .frame(
+                    width: reader.size.height * (1 / 12),
+                    height: reader.size.height * (1 / 12)
+                )
                 .cornerRadius(15)
                 .opacity(moveToTopTitle ? 0 : 1)
-            .resizable()
-            .opacity(zoomTitle ? 1 : 0)
-            .frame(
-                width: reader.size.height * (1 / 12),
-                height: reader.size.height * (1 / 12)
-            ) // ❓
-            .cornerRadius(15)
-            .opacity(moveToTopTitle ? 0 : 1)
             Text(withConfiguration.firstTitleLine)
-                .font(.system(size: reader.size.height * (1 / 24)))
+                .font(.system(size: reader.size.height * (1 / 16)))
                 .fontWeight(.black)
                 .foregroundColor(.black).opacity(zoomTitle ? 1 : 0)
             Text(withConfiguration.secondTitleLine)
-                .font(.system(size: reader.size.height * (1 / 24)))
+                .font(.system(size: reader.size.height * (1 / 16)))
                 .fontWeight(.black)
                 .foregroundColor(.black).opacity(zoomTitle ? 1 : 0)
         }
-        .padding(.top, reader.size.height * (1 / 3.5))
+        .padding(.top, reader.size.height * (1 / 3.6))
         .scaleEffect(zoomTitle ? 1 : 0.5)
-        .offset(y: moveToTopTitle ? reader.size.height * -(1 / 3.5) : 0)
-//        .animation(Animation.easeInOut(duration: 1.0), value: UUID()) // ❓
+        .offset(y: moveToTopTitle ? reader.size.height * -(1 / 4.4) : 0)
     }
 }
 
@@ -131,24 +115,18 @@ private extension UIOnboardingContentView {
     @ViewBuilder func feature(reader: GeometryProxy) -> some View {
         VStack(alignment: .leading) {
             Spacer()
-            ForEach(withConfiguration.features) { feature in // ❓
+            ForEach(withConfiguration.features) { feature in
                 switch feature {
                     case .plain(let plainFeature):
                         UIOnboardingRow(
                             permission: plainFeature,
                             reader: reader,
-                            iconRowSize: 1 / 30,
                             iconPadding: false
                         )
                     case .checkBox(let checkBoxFeature):
                         Button {
-                            if multiSelect == false { // ❓
-                                withConfiguration.features.forEach { otherFeature in
-                                    if case .checkBox(let otherCheckBoxFeature) = otherFeature {
-                                        otherCheckBoxFeature.selected = false
-                                    }
-                                }
-                            }
+                            selected.append(feature)
+
                             if multiSelect {
                                 checkBoxFeature.selected.toggle()
                             } else {
@@ -158,10 +136,9 @@ private extension UIOnboardingContentView {
                             UIOnboardingRowCheckBox(
                                 permission: checkBoxFeature,
                                 reader: reader,
-                                iconRowSize: 1 / 30,
                                 iconPadding: true
                             )
-                            .padding(.top, reader.size.height * (1 / 20))
+                            .padding(.top, reader.size.height * (1 / 68))
                         }
                         .tint(Color(UIColor.label))
                         .buttonStyle(PlainButtonStyle())
@@ -178,7 +155,7 @@ private extension UIOnboardingContentView {
         UIOnboardingBottomBar(
             bottomBar: self.withConfiguration.bottomBar,
             reader: reader,
-            show: navigator,
+            show: onNextAction,
             showContent: self.$showContent
         )
         .padding(.bottom, 20)
@@ -189,11 +166,9 @@ private extension UIOnboardingContentView {
     LanguageContentView() // WelcomeContentView()
 }
 
-
 // MARK: - Config Settings
-// Remove
-//let headerTitleSize: CGFloat
-//let headerAlignment: CGFloat // ❓, cannot understand property name
-//let alignmentFeatures: CGFloat
-//let spacingBetwinFeatures: CGFloat
-//let showBottomBarBackground: Bool
+// let headerTitleSize: Int
+// let headerPaddingTop: Int
+// let alignmentFeatures: Int
+// let spacingBetwinFeatures: Int
+// let showBottomBarBackground: Bool

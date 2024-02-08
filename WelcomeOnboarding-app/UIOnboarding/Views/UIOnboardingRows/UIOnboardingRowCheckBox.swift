@@ -8,12 +8,8 @@
 import SwiftUI
 
 struct UIOnboardingRowCheckBox: View {
-//    @ObservedObject var permission: UIOnboardingFeatureCheckBox
     var permission: UIOnboardingFeatureCheckBox
     let reader: GeometryProxy
-
-    // MARK: - Properties
-    @Binding var iconRowSize: CGFloat
     var iconPadding: Bool
 
     var body: some View {
@@ -27,7 +23,7 @@ private extension UIOnboardingRowCheckBox {
         HStack(alignment: .top, spacing: 10) {
             Image(uiImage: permission.icon)
                 .resizable()
-                .frame(width: reader.size.height * (iconRowSize), height: reader.size.height * (iconRowSize))
+                .frame(width: reader.size.height * (1 / 18), height: reader.size.height * (1 / 18))
             HStack(alignment: .center) {
                 VStack(alignment: .leading) {
                     Text(permission.title)
