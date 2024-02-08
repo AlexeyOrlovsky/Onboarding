@@ -56,7 +56,6 @@ private extension UIOnboardingContentView {
                 Color(UIColor.systemGray6)
                     .offset(y: showJumpBackground ? 1000 : 0)
                     .animation(Animation.linear(duration: 0.5), value: UUID())
-
                 VStack(spacing: 0) {
                     ScrollView(showsIndicators: false) {
                         header(reader: reader)
@@ -70,7 +69,6 @@ private extension UIOnboardingContentView {
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
-
                 VStack {
                     Spacer()
                     bottomBar(reader: reader)
@@ -92,14 +90,13 @@ private extension UIOnboardingContentView {
 private extension UIOnboardingContentView {
     @ViewBuilder func header(reader: GeometryProxy) -> some View {
         VStack(alignment: .leading) {
-
             Image(uiImage: withConfiguration.appIcon)
-            .resizable()
-            .opacity(zoomTitle ? 1 : 0)
-            .frame(width: reader.size.height * (1 / 12), height: reader.size.height *
-                   (1 / 12))
-            .cornerRadius(15)
-            .opacity(moveToTopTitle ? 0 : 1)
+                .resizable()
+                .opacity(zoomTitle ? 1 : 0)
+                .frame(width: reader.size.height * (1 / 12), height: reader.size.height *
+                       (1 / 12))
+                .cornerRadius(15)
+                .opacity(moveToTopTitle ? 0 : 1)
             Text(withConfiguration.firstTitleLine)
                 .font(.system(size: reader.size.height * (headerTitleSize)))
                 .fontWeight(.black)
