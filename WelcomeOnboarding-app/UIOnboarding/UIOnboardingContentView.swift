@@ -9,20 +9,11 @@ import SwiftUI
 
 struct UIOnboardingContentView: View {
     var withConfiguration: UIOnboardingViewConfiguration
-
-    // MARK: - Config Settings
-    // Remove
-    let headerTitleSize: CGFloat
-    let headerAlignment: CGFloat // ❓, cannot understand property name
-    let alignmentFeatures: CGFloat
-    let spacingBetwinFeatures: CGFloat
-    let showBottomBarBackground: Bool
-
     let navigator: (() -> Void)? // rename
     let multiSelect: Bool
 
-    @Binding var showJumpBackground: Bool // ❓
-    @Binding var iconRowSize: CGFloat
+    var showJumpBackground: Bool // ❓
+//    @Binding var iconRowSize: CGFloat
 
     // MARK: - Properties
     @State private var zoomTitle: Bool = false
@@ -35,7 +26,7 @@ struct UIOnboardingContentView: View {
 //            .frame(maxWidth: .infinity, maxHeight: .infinity) // ❓
             .background(showJumpBackground ? Color(UIColor.systemBackground) : Color(UIColor.systemBackground))
             .onAppear {
-                self.showJumpBackground = false
+                // self.showJumpBackground = false
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     withAnimation(.easeInOut(duration: 1.0)) {
@@ -63,12 +54,12 @@ private extension UIOnboardingContentView {
             ZStack {
                 Color(UIColor.systemGray6)
                     .offset(y: showJumpBackground ? 1000 : 0)
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
                     .animation(Animation.linear(duration: 0.5), value: UUID())
-=======
+//=======
 //                    .animation(Animation.linear(duration: 0.5), value: UUID()) // ❓
 
->>>>>>> Stashed changes
+// >>>>>>> Stashed changes
                 VStack(spacing: 0) {
                     ScrollView(showsIndicators: false) {
                         header(reader: reader)
@@ -77,7 +68,7 @@ private extension UIOnboardingContentView {
                             .frame(width: reader.size.height * (1 / 3))
                             .opacity(showContent ? 1 : 0)
 //                            .scaleEffect(zoomTitle ? 1 : 0.5) // ❓
-                            .padding(.top, reader.size.height * -(alignmentFeatures))
+                            .padding(.top, reader.size.height * 1 / 10)
 //                            .animation(Animation.easeInOut(duration: 0.3), value: UUID()) // ❓
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -87,7 +78,8 @@ private extension UIOnboardingContentView {
                     bottomBar(reader: reader)
                         .frame(height: reader.size.height * (1 / 5.6))
                         .frame(maxWidth: .infinity)
-                        .background(showBottomBarBackground ? .ultraThinMaterial : .regular)
+                        // .background(showBottomBarBackground ? .ultraThinMaterial : .regular)
+                        .background(.ultraThinMaterial)
                         .opacity(showContent ? 1.0 : 0)
 //                        .animation(Animation.easeInOut(duration: 0.3), value: UUID()) // ❓
                 }
@@ -104,14 +96,12 @@ private extension UIOnboardingContentView {
     @ViewBuilder func header(reader: GeometryProxy) -> some View {
         VStack(alignment: .leading) {
             Image(uiImage: withConfiguration.appIcon)
-<<<<<<< Updated upstream
                 .resizable()
                 .opacity(zoomTitle ? 1 : 0)
                 .frame(width: reader.size.height * (1 / 12), height: reader.size.height *
                        (1 / 12))
                 .cornerRadius(15)
                 .opacity(moveToTopTitle ? 0 : 1)
-=======
             .resizable()
             .opacity(zoomTitle ? 1 : 0)
             .frame(
@@ -120,17 +110,16 @@ private extension UIOnboardingContentView {
             ) // ❓
             .cornerRadius(15)
             .opacity(moveToTopTitle ? 0 : 1)
->>>>>>> Stashed changes
             Text(withConfiguration.firstTitleLine)
-                .font(.system(size: reader.size.height * (headerTitleSize)))
+                .font(.system(size: reader.size.height * (1 / 24)))
                 .fontWeight(.black)
                 .foregroundColor(.black).opacity(zoomTitle ? 1 : 0)
             Text(withConfiguration.secondTitleLine)
-                .font(.system(size: reader.size.height * (headerTitleSize)))
+                .font(.system(size: reader.size.height * (1 / 24)))
                 .fontWeight(.black)
                 .foregroundColor(.black).opacity(zoomTitle ? 1 : 0)
         }
-        .padding(.top, reader.size.height * (headerAlignment))
+        .padding(.top, reader.size.height * (1 / 3.5))
         .scaleEffect(zoomTitle ? 1 : 0.5)
         .offset(y: moveToTopTitle ? reader.size.height * -(1 / 3.5) : 0)
 //        .animation(Animation.easeInOut(duration: 1.0), value: UUID()) // ❓
@@ -148,7 +137,7 @@ private extension UIOnboardingContentView {
                         UIOnboardingRow(
                             permission: plainFeature,
                             reader: reader,
-                            iconRowSize: $iconRowSize,
+                            iconRowSize: 1 / 30,
                             iconPadding: false
                         )
                     case .checkBox(let checkBoxFeature):
@@ -169,10 +158,10 @@ private extension UIOnboardingContentView {
                             UIOnboardingRowCheckBox(
                                 permission: checkBoxFeature,
                                 reader: reader,
-                                iconRowSize: $iconRowSize,
+                                iconRowSize: 1 / 30,
                                 iconPadding: true
                             )
-                            .padding(.top, reader.size.height * (spacingBetwinFeatures))
+                            .padding(.top, reader.size.height * (1 / 20))
                         }
                         .tint(Color(UIColor.label))
                         .buttonStyle(PlainButtonStyle())
@@ -199,3 +188,12 @@ private extension UIOnboardingContentView {
 #Preview {
     LanguageContentView() // WelcomeContentView()
 }
+
+
+// MARK: - Config Settings
+// Remove
+//let headerTitleSize: CGFloat
+//let headerAlignment: CGFloat // ❓, cannot understand property name
+//let alignmentFeatures: CGFloat
+//let spacingBetwinFeatures: CGFloat
+//let showBottomBarBackground: Bool

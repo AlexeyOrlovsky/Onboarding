@@ -12,28 +12,22 @@ struct WelcomeContentView: View {
         UIOnboardingViewConfiguration.Onboarding.permissionsPage()
     }
 
-    @State var headerTitleSize: CGFloat = 1 / 16
-    @State var headerAlignment: CGFloat = 1 / 3
-    @State var alignmentFeatures: CGFloat = 1 / 3.6
-    @State var spacingBetwinFeatures: CGFloat = 1 / 68
-    @State var showBottomBarBackground: Bool = true
-    @State var multiSelect: Bool = false
+    //    @State var headerTitleSize: CGFloat = 1 / 16
+    //    @State var headerAlignment: CGFloat = 1 / 3
+    //    @State var alignmentFeatures: CGFloat = 1 / 3.6
+    //    @State var spacingBetwinFeatures: CGFloat = 1 / 68
+    //    @State var showBottomBarBackground: Bool = true
+    //    @State var multiSelect: Bool = false
 
-    @State var showJumpBackground: Bool = false
-    @State var iconRowSize: CGFloat = 1 / 18
+    //    @State var showJumpBackground: Bool = false
+    //    @State var iconRowSize: CGFloat = 1 / 18
 
     var body: some View {
         UIOnboardingContentView(
             withConfiguration: withConfiguration,
-            headerTitleSize: headerTitleSize,
-            headerAlignment: headerAlignment,
-            alignmentFeatures: alignmentFeatures,
-            spacingBetwinFeatures: spacingBetwinFeatures,
-            showBottomBarBackground: showBottomBarBackground,
             navigator: nil,
-            multiSelect: multiSelect,
-            showJumpBackground: $showJumpBackground,
-            iconRowSize: $iconRowSize
+            multiSelect: false,
+            showJumpBackground: false
         )
     }
 }
