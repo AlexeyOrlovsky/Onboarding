@@ -11,15 +11,17 @@ struct UIOnboardingContentView: View {
     var withConfiguration: UIOnboardingViewConfiguration
 
     // MARK: - Config Settings
+    // Remove
     let headerTitleSize: CGFloat
-    let headerAlignment: CGFloat
+    let headerAlignment: CGFloat // ❓, cannot understand property name
     let alignmentFeatures: CGFloat
     let spacingBetwinFeatures: CGFloat
     let showBottomBarBackground: Bool
-    let navigator: (() -> Void)?
+
+    let navigator: (() -> Void)? // rename
     let multiSelect: Bool
 
-    @Binding var showJumpBackground: Bool
+    @Binding var showJumpBackground: Bool // ❓
     @Binding var iconRowSize: CGFloat
 
     // MARK: - Properties
@@ -30,19 +32,25 @@ struct UIOnboardingContentView: View {
     var body: some View {
         content()
             .ignoresSafeArea()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+//            .frame(maxWidth: .infinity, maxHeight: .infinity) // ❓
             .background(showJumpBackground ? Color(UIColor.systemBackground) : Color(UIColor.systemBackground))
             .onAppear {
                 self.showJumpBackground = false
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    zoomTitle = true
+                    withAnimation(.easeInOut(duration: 1.0)) {
+                        zoomTitle = true
+                    }
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                    moveToTopTitle = true
+                    withAnimation(.easeInOut(duration: 1.0)) {
+                        moveToTopTitle = true
+                    }
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-                    showContent = true
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        showContent = true
+                    }
                 }
             }
     }
@@ -55,7 +63,12 @@ private extension UIOnboardingContentView {
             ZStack {
                 Color(UIColor.systemGray6)
                     .offset(y: showJumpBackground ? 1000 : 0)
+<<<<<<< Updated upstream
                     .animation(Animation.linear(duration: 0.5), value: UUID())
+=======
+//                    .animation(Animation.linear(duration: 0.5), value: UUID()) // ❓
+
+>>>>>>> Stashed changes
                 VStack(spacing: 0) {
                     ScrollView(showsIndicators: false) {
                         header(reader: reader)
@@ -63,9 +76,9 @@ private extension UIOnboardingContentView {
                         feature(reader: reader)
                             .frame(width: reader.size.height * (1 / 3))
                             .opacity(showContent ? 1 : 0)
-                            .scaleEffect(zoomTitle ? 1 : 0.5)
+//                            .scaleEffect(zoomTitle ? 1 : 0.5) // ❓
                             .padding(.top, reader.size.height * -(alignmentFeatures))
-                            .animation(Animation.easeInOut(duration: 0.3), value: UUID())
+//                            .animation(Animation.easeInOut(duration: 0.3), value: UUID()) // ❓
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
@@ -76,7 +89,7 @@ private extension UIOnboardingContentView {
                         .frame(maxWidth: .infinity)
                         .background(showBottomBarBackground ? .ultraThinMaterial : .regular)
                         .opacity(showContent ? 1.0 : 0)
-                        .animation(Animation.easeInOut(duration: 0.3), value: UUID())
+//                        .animation(Animation.easeInOut(duration: 0.3), value: UUID()) // ❓
                 }
                 .padding([.top, .bottom], 10)
 
@@ -91,12 +104,23 @@ private extension UIOnboardingContentView {
     @ViewBuilder func header(reader: GeometryProxy) -> some View {
         VStack(alignment: .leading) {
             Image(uiImage: withConfiguration.appIcon)
+<<<<<<< Updated upstream
                 .resizable()
                 .opacity(zoomTitle ? 1 : 0)
                 .frame(width: reader.size.height * (1 / 12), height: reader.size.height *
                        (1 / 12))
                 .cornerRadius(15)
                 .opacity(moveToTopTitle ? 0 : 1)
+=======
+            .resizable()
+            .opacity(zoomTitle ? 1 : 0)
+            .frame(
+                width: reader.size.height * (1 / 12),
+                height: reader.size.height * (1 / 12)
+            ) // ❓
+            .cornerRadius(15)
+            .opacity(moveToTopTitle ? 0 : 1)
+>>>>>>> Stashed changes
             Text(withConfiguration.firstTitleLine)
                 .font(.system(size: reader.size.height * (headerTitleSize)))
                 .fontWeight(.black)
@@ -109,7 +133,7 @@ private extension UIOnboardingContentView {
         .padding(.top, reader.size.height * (headerAlignment))
         .scaleEffect(zoomTitle ? 1 : 0.5)
         .offset(y: moveToTopTitle ? reader.size.height * -(1 / 3.5) : 0)
-        .animation(Animation.easeInOut(duration: 1.0), value: UUID())
+//        .animation(Animation.easeInOut(duration: 1.0), value: UUID()) // ❓
     }
 }
 
@@ -118,7 +142,7 @@ private extension UIOnboardingContentView {
     @ViewBuilder func feature(reader: GeometryProxy) -> some View {
         VStack(alignment: .leading) {
             Spacer()
-            ForEach(withConfiguration.features, id: \.id) { feature in
+            ForEach(withConfiguration.features) { feature in // ❓
                 switch feature {
                     case .plain(let plainFeature):
                         UIOnboardingRow(
@@ -129,7 +153,7 @@ private extension UIOnboardingContentView {
                         )
                     case .checkBox(let checkBoxFeature):
                         Button {
-                            if multiSelect == false {
+                            if multiSelect == false { // ❓
                                 withConfiguration.features.forEach { otherFeature in
                                     if case .checkBox(let otherCheckBoxFeature) = otherFeature {
                                         otherCheckBoxFeature.selected = false

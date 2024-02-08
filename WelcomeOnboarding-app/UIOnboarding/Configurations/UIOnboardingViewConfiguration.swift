@@ -10,9 +10,18 @@ import SwiftUI
 // MARK: - UIOnboardingViewConfiguration
 public struct UIOnboardingViewConfiguration {
     // MARK: - Feature
-    public enum Feature {
+    public enum Feature: Identifiable {
         case plain(UIOnboardingFeature)
         case checkBox(UIOnboardingFeatureCheckBox)
+
+        public var id: UUID {
+            switch self {
+                case .plain(let onboardingFeatures):
+                    return onboardingFeatures.id
+                case .checkBox(let checkBoxFeatures):
+                    return checkBoxFeatures.id
+            }
+        }
     }
 
     // MARK: - Properties

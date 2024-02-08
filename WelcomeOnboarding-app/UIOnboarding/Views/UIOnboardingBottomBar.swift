@@ -23,7 +23,7 @@ struct UIOnboardingBottomBar: View {
 // MARK: - UIOnboardingBottomBar
 private extension UIOnboardingBottomBar {
     @ViewBuilder func content() -> some View {
-        VStack {
+        VStack { // ❓, redundant VStack
             VStack {
                 Spacer()
 

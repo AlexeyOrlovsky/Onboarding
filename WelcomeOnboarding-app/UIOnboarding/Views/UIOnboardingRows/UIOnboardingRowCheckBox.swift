@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct UIOnboardingRowCheckBox: View {
-    @ObservedObject var permission: UIOnboardingFeatureCheckBox
+//    @ObservedObject var permission: UIOnboardingFeatureCheckBox
+    var permission: UIOnboardingFeatureCheckBox
     let reader: GeometryProxy
 
     // MARK: - Properties

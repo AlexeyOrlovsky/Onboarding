@@ -12,7 +12,7 @@ struct UIOnboardingRow: View {
     let reader: GeometryProxy
 
     // MARK: - Properties
-    @Binding var iconRowSize: CGFloat
+    @Binding var iconRowSize: CGFloat // ❓
     var iconPadding: Bool
 
     var body: some View {

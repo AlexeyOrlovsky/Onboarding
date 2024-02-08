@@ -15,7 +15,7 @@ struct LanguageContentView: View {
 
     @EnvironmentObject var navigator: AppFlowNavigator
 
-    @State var headerTitleSize: CGFloat = 1 / 36
+    let headerTitleSize: CGFloat = 1 / 36
     @State var headerAlignment: CGFloat = 1 / 2.8
     @State var showJumpBackground: Bool = true
     @State var alignmentFeatures: CGFloat = 1 / 5
@@ -37,6 +37,9 @@ struct LanguageContentView: View {
             showJumpBackground: $showJumpBackground,
             iconRowSize: $iconRowSize
         )
+//        { selectedItem in
+            //
+//        } // TODO!
     }
 }
 

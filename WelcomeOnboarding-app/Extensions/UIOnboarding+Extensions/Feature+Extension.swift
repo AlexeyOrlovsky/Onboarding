@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-// MARK: - Extension
-extension UIOnboardingViewConfiguration.Feature {
-    public var id: UUID {
-        switch self {
-            case .plain(let onboardingFeatures):
-                return onboardingFeatures.id
-            case .checkBox(let checkBoxFeatures):
-                return checkBoxFeatures.id
-        }
-    }
-}
+//// MARK: - Extension
+//extension UIOnboardingViewConfiguration.Feature {
+//    public var id: UUID {
+//        switch self {
+//            case .plain(let onboardingFeatures):
+//                return onboardingFeatures.id
+//            case .checkBox(let checkBoxFeatures):
+//                return checkBoxFeatures.id
+//        }
+//    }
+//}
