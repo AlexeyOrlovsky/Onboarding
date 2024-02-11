@@ -43,31 +43,24 @@ extension WelcomeOnboarding {
                     .init(
                         icon: UIImage(named: "englandLangIcon") ?? .init(),
                         title: "English",
-                        description: "",
                         selected: true
                     )
                 ),
                 .checkBox(
                     .init(
                         icon: UIImage(named: "germanyLangIcon") ?? .init(),
-                        title: "Germany",
-                        description: "",
-                        selected: false
+                        title: "Germany"
                     )
                 ),
                 .checkBox(
                     .init(
                         icon: UIImage(named: "italyLangIcon") ?? .init(),
-                        title: "Italian",
-                        description: "",
-                        selected: false
+                        title: "Italian"
                     )
                 ),
                 .checkBox(
                     .init(icon: UIImage(named: "sloveniaLangIcon") ?? .init(),
-                          title: "Slovenian",
-                          description: "",
-                          selected: false
+                          title: "Slovenian"
                          )
                 )
             ]
@@ -79,11 +72,6 @@ extension WelcomeOnboarding {
                 subtitle: "Developed and designed for LOT TOV",
                 buttonText: "Continue"
             )
-        }
-
-        static func multiSelect() -> Bool {
-            let option = false
-            return option
         }
     }
 }

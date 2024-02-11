@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct UIOnboardingRowCheckBox: View {
+    // MARK: - Properties
     var permission: UIOnboardingFeatureCheckBox
     let reader: GeometryProxy
     var iconPadding: Bool
+    private let isPad = UIDevice.current.userInterfaceIdiom == .pad
+    var isSelected: Bool
+
+//    init(isSelected: Bool) {
+//        self.isSelected = permission.selected ?? false ? permission.selected ?? false : false
+//    }
 
     var body: some View {
         content()
@@ -23,20 +30,16 @@ private extension UIOnboardingRowCheckBox {
         HStack(alignment: .top, spacing: 10) {
             Image(uiImage: permission.icon)
                 .resizable()
-                .frame(width: reader.size.height * (1 / 18), height: reader.size.height * (1 / 18))
+                .frame(width: isPad ? 50 : 45, height: isPad ? 50 : 45)
             HStack(alignment: .center) {
                 VStack(alignment: .leading) {
                     Text(permission.title)
-                        .font(.system(size: reader.size.height * (1 / 46)))
+                        .font(.system(size: isPad ? 24 : 18))
                         .fontWeight(.semibold)
-                    Text(permission.description)
-                        .font(.system(size: reader.size.height * (1 / 46)))
-                        .fontWeight(.regular)
                 }
-                .padding(.top, iconPadding ? reader.size.height * (1 / 60) : 0)
+                .padding(.top, iconPadding ? reader.size.height * (1 / 100) : 0)
                 Spacer()
-
-                permission.selected ? Image(systemName: "checkmark")
+                isSelected ? Image(systemName: "checkmark")
                     .resizable()
                     .frame(width: reader.size.height * (1 / 52), height: reader.size.height * (1 / 52)) : nil
             }

@@ -17,6 +17,9 @@ struct WelcomeContentView: View {
             withConfiguration: withConfiguration,
             onNextAction: nil,
             multiSelect: false,
+            onSelectItems: { selectedItems in
+                debugPrint(selectedItems)
+            },
             showJumpBackground: false
         )
     }

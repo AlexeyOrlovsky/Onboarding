@@ -18,12 +18,13 @@ struct LanguageContentView: View {
         UIOnboardingContentView(
             withConfiguration: withConfiguration,
             onNextAction: { navigator.push(.welcomeView) },
-            multiSelect: true,
-            showJumpBackground: true
+            multiSelect: false,
+            onSelectItems: { selectedItems in
+                debugPrint(selectedItems)
+            },
+            showJumpBackground: true,
+            selected: [withConfiguration.features].first ?? .init()
         )
-//        { selectedItem in
-            //
-//        } // TODO!
     }
 }
 

@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct UIOnboardingBottomBar: View {
+    // MARK: - Properties
     var bottomBar: UIOnboardingBottomBarConfiguration
     let reader: GeometryProxy
     let show: (() -> Void)?
 
     // MARK: - Properties
     @Binding var showContent: Bool
+    private let isPad = UIDevice.current.userInterfaceIdiom == .pad
 
     var body: some View {
         content()
@@ -39,15 +41,14 @@ private extension UIOnboardingBottomBar {
                 VStack(alignment: .center) {
                     Button {
                         show?()
-                        print("Continue Button tapped")
+                        debugPrint("Continue Button tapped")
                     } label: {
                         Text(bottomBar.buttonText)
-                            .font(.system(size: reader.size.height * (1 / 42)))
+                            .font(.system(size: isPad ? 24 : 20))
                             .foregroundColor(showContent ? Color(UIColor.systemBackground) : .clear)
                             .fontWeight(.bold)
                     }
-                    .frame(width: reader.size.height * (1 / 3.2), height: reader.size.height *
-                           (1 / 16))
+                    .frame(width: isPad ? 342 : 252, height: isPad ? 64 : 54)
                     .background(showContent ? Color(UIColor.label) : .clear)
                     .cornerRadius(reader.size.height *
                                   (1 / 52))

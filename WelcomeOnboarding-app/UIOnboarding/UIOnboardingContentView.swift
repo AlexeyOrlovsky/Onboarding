@@ -8,18 +8,20 @@
 import SwiftUI
 
 struct UIOnboardingContentView: View {
+    // MARK: - Properties
     var withConfiguration: UIOnboardingViewConfiguration
     let onNextAction: (() -> Void)?
     let multiSelect: Bool
+    let onSelectItems: (([UIOnboardingViewConfiguration.Feature]) -> Void)?
 
     @State var showJumpBackground: Bool
+    @State var selected: [UIOnboardingViewConfiguration.Feature] = []
 
     // MARK: - Properties
     @State private var zoomTitle: Bool = false
     @State private var moveToTopTitle: Bool = false
     @State private var showContent: Bool = false
-
-    @State var selected: [UIOnboardingViewConfiguration.Feature] = []
+    private let isPad = UIDevice.current.userInterfaceIdiom == .pad
 
     var body: some View {
         content()
@@ -57,19 +59,19 @@ private extension UIOnboardingContentView {
                     .animation(Animation.linear(duration: 0.5), value: UUID())
                 VStack(spacing: 0) {
                     ScrollView(showsIndicators: false) {
-                        header(reader: reader)
+                            header(reader: reader)
 
-                        feature(reader: reader)
-                            .frame(width: reader.size.height * 1 / 3)
-                            .opacity(showContent ? 1 : 0)
-                            .padding(.top, reader.size.height * -(1 / 4.8))
+                            feature(reader: reader)
+                                .frame(width: isPad ? 550 : 320)
+                                .opacity(showContent ? 1 : 0)
+                                .padding(.top, reader.size.height * -(1 / 4.8))
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
                 VStack {
                     Spacer()
                     bottomBar(reader: reader)
-                        .frame(height: reader.size.height * (1 / 5.6))
+                        .frame(height: reader.size.height * (isPad ? 1 / 5.6 : 1 / 5 ))
                         .frame(maxWidth: .infinity)
                         .background(.ultraThinMaterial)
                         .opacity(showContent ? 1.0 : 0)
@@ -90,18 +92,18 @@ private extension UIOnboardingContentView {
                 .resizable()
                 .opacity(zoomTitle ? 1 : 0)
                 .frame(
-                    width: reader.size.height * (1 / 12),
-                    height: reader.size.height * (1 / 12)
+                    width: isPad ? reader.size.height * (1 / 12) : 70,
+                    height: isPad ? reader.size.height * (1 / 12) : 70
                 )
                 .cornerRadius(15)
                 .opacity(moveToTopTitle ? 0 : 1)
             Text(withConfiguration.firstTitleLine)
-                .font(.system(size: reader.size.height * (1 / 16)))
-                .fontWeight(.black)
+                .font(.system(size: isPad ? 86 : 54))
+                .fontWeight(isPad ? .black : .heavy)
                 .foregroundColor(.black).opacity(zoomTitle ? 1 : 0)
             Text(withConfiguration.secondTitleLine)
-                .font(.system(size: reader.size.height * (1 / 16)))
-                .fontWeight(.black)
+                .font(.system(size: isPad ? 86 : 54))
+                .fontWeight(isPad ? .black : .heavy)
                 .foregroundColor(.black).opacity(zoomTitle ? 1 : 0)
         }
         .padding(.top, reader.size.height * (1 / 3.6))
@@ -125,18 +127,38 @@ private extension UIOnboardingContentView {
                         )
                     case .checkBox(let checkBoxFeature):
                         Button {
-                            selected.append(feature)
-
                             if multiSelect {
-                                checkBoxFeature.selected.toggle()
+                                if let index = selected.firstIndex(where: { feature in
+                                    if case .checkBox(let featureCheckBox) = feature {
+                                        return featureCheckBox.id == checkBoxFeature.id
+                                    }
+                                    return false
+                                }) {
+                                    selected.remove(at: index)
+                                    checkBoxFeature.selected = false
+                                } else {
+                                    selected.append(.checkBox(checkBoxFeature))
+                                    checkBoxFeature.selected = true
+                                }
                             } else {
+                                selected.removeAll()
+                                selected.append(.checkBox(checkBoxFeature))
                                 checkBoxFeature.selected = true
                             }
+                            self.onSelectItems?(self.selected)
                         } label: {
+                            let isSelected = selected.contains { feature in
+                                if case .checkBox(let featureCheckBox) = feature {
+                                    return featureCheckBox.id == checkBoxFeature.id
+                                }
+                                return false
+                            }
+
                             UIOnboardingRowCheckBox(
                                 permission: checkBoxFeature,
                                 reader: reader,
-                                iconPadding: true
+                                iconPadding: true,
+                                isSelected: isSelected
                             )
                             .padding(.top, reader.size.height * (1 / 68))
                         }
@@ -145,7 +167,7 @@ private extension UIOnboardingContentView {
                 }
             }
         }
-        .padding(.bottom, reader.size.height * (1 / 5))
+        .padding(.bottom, reader.size.height * (1 / 4))
     }
 }
 
