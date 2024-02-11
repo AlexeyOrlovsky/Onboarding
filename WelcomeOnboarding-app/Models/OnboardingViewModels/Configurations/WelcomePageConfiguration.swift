@@ -41,7 +41,7 @@ extension WelcomeOnboarding {
             [
                 .plain(
                     .init(
-                        icon: UIImage(named: "bluetoothIcon") ?? .init(),
+                        icon: UIImage(named: "bluetoothIcon") ?? .init(), // // Image("bluetoothIcon")
                         title: "Allow to use bluetooth connection",
                         description: "It's needed to scan nearby beacons and present different scenarios to you"
                     )
@@ -69,11 +69,6 @@ extension WelcomeOnboarding {
                 subtitle: "Developed and designed for LOT TOV",
                 buttonText: "Continue"
             )
-        }
-
-        static func multiSelect() -> Bool {
-            let option = true
-            return option
         }
     }
 }

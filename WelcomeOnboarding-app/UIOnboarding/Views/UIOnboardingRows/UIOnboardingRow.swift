@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct UIOnboardingRow: View {
+    // MARK: - Properties
     let permission: UIOnboardingFeature
     let reader: GeometryProxy
-
-    // MARK: - Properties
-    @Binding var iconRowSize: CGFloat
     var iconPadding: Bool
+    private let isPad = UIDevice.current.userInterfaceIdiom == .pad
 
     var body: some View {
         content()
@@ -24,16 +23,16 @@ struct UIOnboardingRow: View {
 private extension UIOnboardingRow {
     @ViewBuilder func content() -> some View {
         HStack(alignment: .top, spacing: 10) {
-            Image(uiImage: permission.icon)
+            Image(uiImage: permission.icon) // Image(permission.icon) 🚩
                 .resizable()
-                .frame(width: reader.size.height * (iconRowSize), height: reader.size.height * (iconRowSize))
+                .frame(width: isPad ? 50 : 45, height: isPad ? 50 : 45)
             HStack {
                 VStack(alignment: .leading) {
                     Text(permission.title)
-                        .font(.system(size: reader.size.height * (1 / 46)))
+                        .font(.system(size: isPad ? 24 : 18))
                         .fontWeight(.semibold)
                     Text(permission.description)
-                        .font(.system(size: reader.size.height * (1 / 46)))
+                        .font(.system(size: isPad ? 22 : 16))
                         .fontWeight(.regular)
                 }
                 .padding(.top, iconPadding ? reader.size.height * (1 / 60) : 0)

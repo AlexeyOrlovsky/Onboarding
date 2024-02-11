@@ -8,41 +8,42 @@
 import SwiftUI
 
 struct UIOnboardingContentView: View {
+    // MARK: - Properties
     var withConfiguration: UIOnboardingViewConfiguration
-
-    // MARK: - Config Settings
-    let headerTitleSize: CGFloat
-    let headerAlignment: CGFloat
-    let alignmentFeatures: CGFloat
-    let spacingBetwinFeatures: CGFloat
-    let showBottomBarBackground: Bool
-    let navigator: (() -> Void)?
+    let onNextAction: (() -> Void)?
     let multiSelect: Bool
+    let onSelectItems: (([UIOnboardingViewConfiguration.Feature]) -> Void)?
 
-    @Binding var showJumpBackground: Bool
-    @Binding var iconRowSize: CGFloat
+    @State var showJumpBackground: Bool
+    @State var selected: [UIOnboardingViewConfiguration.Feature] = []
 
     // MARK: - Properties
     @State private var zoomTitle: Bool = false
     @State private var moveToTopTitle: Bool = false
     @State private var showContent: Bool = false
+    private let isPad = UIDevice.current.userInterfaceIdiom == .pad
 
     var body: some View {
         content()
             .ignoresSafeArea()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(showJumpBackground ? Color(UIColor.systemBackground) : Color(UIColor.systemBackground))
+            .background(Color(UIColor.systemBackground))
             .onAppear {
                 self.showJumpBackground = false
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    zoomTitle = true
+                    withAnimation(.easeInOut(duration: 1.0)) {
+                        zoomTitle = true
+                    }
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                    moveToTopTitle = true
+                    withAnimation(.easeInOut(duration: 1.0)) {
+                        moveToTopTitle = true
+                    }
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-                    showContent = true
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        showContent = true
+                    }
                 }
             }
     }
@@ -58,25 +59,22 @@ private extension UIOnboardingContentView {
                     .animation(Animation.linear(duration: 0.5), value: UUID())
                 VStack(spacing: 0) {
                     ScrollView(showsIndicators: false) {
-                        header(reader: reader)
+                            header(reader: reader)
 
-                        feature(reader: reader)
-                            .frame(width: reader.size.height * (1 / 3))
-                            .opacity(showContent ? 1 : 0)
-                            .scaleEffect(zoomTitle ? 1 : 0.5)
-                            .padding(.top, reader.size.height * -(alignmentFeatures))
-                            .animation(Animation.easeInOut(duration: 0.3), value: UUID())
+                            feature(reader: reader)
+                                .frame(width: isPad ? 550 : 320)
+                                .opacity(showContent ? 1 : 0)
+                                .padding(.top, reader.size.height * -(1 / 4.8))
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
                 VStack {
                     Spacer()
                     bottomBar(reader: reader)
-                        .frame(height: reader.size.height * (1 / 5.6))
+                        .frame(height: reader.size.height * (isPad ? 1 / 5.6 : 1 / 5 ))
                         .frame(maxWidth: .infinity)
-                        .background(showBottomBarBackground ? .ultraThinMaterial : .regular)
+                        .background(.ultraThinMaterial)
                         .opacity(showContent ? 1.0 : 0)
-                        .animation(Animation.easeInOut(duration: 0.3), value: UUID())
                 }
                 .padding([.top, .bottom], 10)
 
@@ -93,23 +91,24 @@ private extension UIOnboardingContentView {
             Image(uiImage: withConfiguration.appIcon)
                 .resizable()
                 .opacity(zoomTitle ? 1 : 0)
-                .frame(width: reader.size.height * (1 / 12), height: reader.size.height *
-                       (1 / 12))
+                .frame(
+                    width: isPad ? reader.size.height * (1 / 12) : 70,
+                    height: isPad ? reader.size.height * (1 / 12) : 70
+                )
                 .cornerRadius(15)
                 .opacity(moveToTopTitle ? 0 : 1)
             Text(withConfiguration.firstTitleLine)
-                .font(.system(size: reader.size.height * (headerTitleSize)))
-                .fontWeight(.black)
+                .font(.system(size: isPad ? 86 : 54))
+                .fontWeight(isPad ? .black : .heavy)
                 .foregroundColor(.black).opacity(zoomTitle ? 1 : 0)
             Text(withConfiguration.secondTitleLine)
-                .font(.system(size: reader.size.height * (headerTitleSize)))
-                .fontWeight(.black)
+                .font(.system(size: isPad ? 86 : 54))
+                .fontWeight(isPad ? .black : .heavy)
                 .foregroundColor(.black).opacity(zoomTitle ? 1 : 0)
         }
-        .padding(.top, reader.size.height * (headerAlignment))
+        .padding(.top, reader.size.height * (1 / 3.6))
         .scaleEffect(zoomTitle ? 1 : 0.5)
-        .offset(y: moveToTopTitle ? reader.size.height * -(1 / 3.5) : 0)
-        .animation(Animation.easeInOut(duration: 1.0), value: UUID())
+        .offset(y: moveToTopTitle ? reader.size.height * -(1 / 4.4) : 0)
     }
 }
 
@@ -118,44 +117,57 @@ private extension UIOnboardingContentView {
     @ViewBuilder func feature(reader: GeometryProxy) -> some View {
         VStack(alignment: .leading) {
             Spacer()
-            ForEach(withConfiguration.features, id: \.id) { feature in
+            ForEach(withConfiguration.features) { feature in
                 switch feature {
                     case .plain(let plainFeature):
                         UIOnboardingRow(
                             permission: plainFeature,
                             reader: reader,
-                            iconRowSize: $iconRowSize,
                             iconPadding: false
                         )
                     case .checkBox(let checkBoxFeature):
                         Button {
-                            if multiSelect == false {
-                                withConfiguration.features.forEach { otherFeature in
-                                    if case .checkBox(let otherCheckBoxFeature) = otherFeature {
-                                        otherCheckBoxFeature.selected = false
-                                    }
-                                }
-                            }
                             if multiSelect {
-                                checkBoxFeature.selected.toggle()
+                                if let index = selected.firstIndex(where: { feature in
+                                    if case .checkBox(let featureCheckBox) = feature {
+                                        return featureCheckBox.id == checkBoxFeature.id
+                                    }
+                                    return false
+                                }) {
+                                    selected.remove(at: index)
+                                    checkBoxFeature.selected = false
+                                } else {
+                                    selected.append(.checkBox(checkBoxFeature))
+                                    checkBoxFeature.selected = true
+                                }
                             } else {
+                                selected.removeAll()
+                                selected.append(.checkBox(checkBoxFeature))
                                 checkBoxFeature.selected = true
                             }
+                            self.onSelectItems?(self.selected)
                         } label: {
+                            let isSelected = selected.contains { feature in
+                                if case .checkBox(let featureCheckBox) = feature {
+                                    return featureCheckBox.id == checkBoxFeature.id
+                                }
+                                return false
+                            }
+
                             UIOnboardingRowCheckBox(
                                 permission: checkBoxFeature,
                                 reader: reader,
-                                iconRowSize: $iconRowSize,
-                                iconPadding: true
+                                iconPadding: true,
+                                isSelected: isSelected
                             )
-                            .padding(.top, reader.size.height * (spacingBetwinFeatures))
+                            .padding(.top, reader.size.height * (1 / 68))
                         }
                         .tint(Color(UIColor.label))
                         .buttonStyle(PlainButtonStyle())
                 }
             }
         }
-        .padding(.bottom, reader.size.height * (1 / 5))
+        .padding(.bottom, reader.size.height * (1 / 4))
     }
 }
 
@@ -165,7 +177,7 @@ private extension UIOnboardingContentView {
         UIOnboardingBottomBar(
             bottomBar: self.withConfiguration.bottomBar,
             reader: reader,
-            show: navigator,
+            show: onNextAction,
             showContent: self.$showContent
         )
         .padding(.bottom, 20)
@@ -175,3 +187,10 @@ private extension UIOnboardingContentView {
 #Preview {
     LanguageContentView() // WelcomeContentView()
 }
+
+// MARK: - Config Settings
+// let headerTitleSize: Int
+// let headerPaddingTop: Int
+// let alignmentFeatures: Int
+// let spacingBetwinFeatures: Int
+// let showBottomBarBackground: Bool
