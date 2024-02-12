@@ -48,12 +48,13 @@ private extension UIOnboardingBottomBar {
                             .foregroundColor(showContent ? Color(UIColor.systemBackground) : .clear)
                             .fontWeight(.bold)
                     }
-                    .frame(width: isPad ? 342 : 252, height: isPad ? 64 : 54)
+                    .frame(width: isPad ? 300 : 252, height: isPad ? 58 : 54)
                     .background(showContent ? Color(UIColor.label) : .clear)
                     .cornerRadius(reader.size.height *
                                   (1 / 52))
                 }
             }
         }
+        .padding(.bottom)
     }
 }

@@ -60,6 +60,7 @@ private extension UIOnboardingContentView {
                 VStack(spacing: 0) {
                     ScrollView(showsIndicators: false) {
                             header(reader: reader)
+                            .padding()
 
                             feature(reader: reader)
                                 .frame(width: isPad ? 550 : 320)
@@ -71,12 +72,12 @@ private extension UIOnboardingContentView {
                 VStack {
                     Spacer()
                     bottomBar(reader: reader)
-                        .frame(height: reader.size.height * (isPad ? 1 / 5.6 : 1 / 5 ))
+                        .frame(height: reader.size.height * (isPad ? 1 / 5.6 : 1 / 4.2 ))
                         .frame(maxWidth: .infinity)
                         .background(.ultraThinMaterial)
                         .opacity(showContent ? 1.0 : 0)
                 }
-                .padding([.top, .bottom], 10)
+                .padding(.top, 0)
 
             }
             .ignoresSafeArea()
@@ -106,7 +107,7 @@ private extension UIOnboardingContentView {
                 .fontWeight(isPad ? .black : .heavy)
                 .foregroundColor(.black).opacity(zoomTitle ? 1 : 0)
         }
-        .padding(.top, reader.size.height * (1 / 3.6))
+        .padding(.top, reader.size.height * (1 / 3.9))
         .scaleEffect(zoomTitle ? 1 : 0.5)
         .offset(y: moveToTopTitle ? reader.size.height * -(1 / 4.4) : 0)
     }
