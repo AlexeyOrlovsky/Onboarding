@@ -16,13 +16,13 @@ struct LanguageContentView: View {
 
     var body: some View {
         UIOnboardingContentView(
+            withConfiguration: withConfiguration,
             headerTitleSize: 24,
             headerTitleSizeIsPad: 44,
             headerTitlePadding: 3.5,
             featurePadding: 4.9,
             onboardingRowWidth: 280,
             showBottomBarBackground: false,
-            withConfiguration: withConfiguration,
             onNextAction: { navigator.push(.welcomeView) },
             multiSelect: false,
             onSelectItems: { selectedItems in

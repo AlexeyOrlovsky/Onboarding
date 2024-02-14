@@ -14,13 +14,13 @@ struct WelcomeContentView: View {
 
     var body: some View {
         UIOnboardingContentView(
+            withConfiguration: withConfiguration,
             headerTitleSize: 48,
             headerTitleSizeIsPad: 80,
             headerTitlePadding: 3.8,
             featurePadding: 4,
             onboardingRowWidth: 310,
             showBottomBarBackground: true,
-            withConfiguration: withConfiguration,
             onNextAction: nil,
             multiSelect: false,
             onSelectItems: { selectedItems in

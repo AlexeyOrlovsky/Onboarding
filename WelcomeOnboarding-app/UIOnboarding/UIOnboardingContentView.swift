@@ -9,18 +9,18 @@ import SwiftUI
 
 struct UIOnboardingContentView: View {
     // MARK: - Properties
+    let withConfiguration: UIOnboardingViewConfiguration
     let headerTitleSize: Double
     let headerTitleSizeIsPad: Double
     let headerTitlePadding: Double
     let featurePadding: Double
     let onboardingRowWidth: Double
     let showBottomBarBackground: Bool
-    let withConfiguration: UIOnboardingViewConfiguration
     let onNextAction: (() -> Void)?
     let multiSelect: Bool
     let onSelectItems: (([UIOnboardingViewConfiguration.Feature]) -> Void)?
-
     let showWithPresentAnimation: Bool
+
     @State var selected: [UIOnboardingViewConfiguration.Feature] = []
 
     // MARK: - Private Properties
@@ -64,7 +64,7 @@ private extension UIOnboardingContentView {
         GeometryReader { reader in
             ZStack {
                 Color(UIColor.systemGray6)
-                    .offset(y: self.yBGOffset)
+                    .offset(y: showWithPresentAnimation ? self.yBGOffset : 0)
 
                 VStack(alignment: .leading, spacing: 0) {
                     ScrollView(showsIndicators: false) {
@@ -89,7 +89,7 @@ private extension UIOnboardingContentView {
 
             }
             .ignoresSafeArea()
-            .background(Color(UIColor.systemGray6))
+            // .background(Color(UIColor.systemGray6))
         }
     }
 }
