@@ -21,13 +21,12 @@ struct UIOnboardingContentView: View {
     let onSelectItems: (([UIOnboardingViewConfiguration.Feature]) -> Void)?
     let showWithPresentAnimation: Bool
 
-    @State var selected: [UIOnboardingViewConfiguration.Feature] = []
-
     // MARK: - Private Properties
     @State private var yBGOffset: CGFloat = 1000
     @State private var zoomTitle: Bool = false
     @State private var moveToTopTitle: Bool = false
     @State private var showContent: Bool = false
+    @State private var selected: [UIOnboardingViewConfiguration.Feature] = []
     private let isPad = UIDevice.current.userInterfaceIdiom == .pad
 
     var body: some View {
@@ -86,10 +85,8 @@ private extension UIOnboardingContentView {
                         .opacity(showContent ? 1.0 : 0)
                 }
                 .padding(.top, 0)
-
             }
             .ignoresSafeArea()
-            // .background(Color(UIColor.systemGray6))
         }
     }
 }
@@ -116,7 +113,10 @@ private extension UIOnboardingContentView {
                 .fontWeight(isPad ? .black : .heavy)
                 .foregroundColor(.black).opacity(zoomTitle ? 1 : 0)
         }
-        .padding(.top, isPad ? reader.size.height * (1 / 3.8) : reader.size.height * CGFloat(1 / headerTitlePadding))
+        .padding(.top, isPad
+                 ? reader.size.height * (1 / 3.8)
+                 : reader.size.height * CGFloat(1 / headerTitlePadding)
+        )
         .scaleEffect(zoomTitle ? 1 : 0.5)
         .offset(y: moveToTopTitle ? reader.size.height * -(1 / 4.4) : 0)
     }

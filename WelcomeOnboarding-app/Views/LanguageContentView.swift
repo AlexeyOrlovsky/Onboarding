@@ -12,7 +12,7 @@ struct LanguageContentView: View {
     private var withConfiguration: UIOnboardingViewConfiguration {
         UIOnboardingViewConfiguration.Onboarding.languagesPage()
     }
-    @EnvironmentObject var navigator: AppFlowNavigator
+    @EnvironmentObject private var navigator: AppFlowNavigator
 
     var body: some View {
         UIOnboardingContentView(
@@ -23,7 +23,7 @@ struct LanguageContentView: View {
             featurePadding: 4.9,
             onboardingRowWidth: 280,
             showBottomBarBackground: false,
-            onNextAction: { navigator.push(.welcomeView) },
+            onNextAction: { navigator.push(.welcome) },
             multiSelect: false,
             onSelectItems: { selectedItems in
                 debugPrint(selectedItems)
