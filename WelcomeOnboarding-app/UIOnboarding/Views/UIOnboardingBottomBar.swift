@@ -9,10 +9,10 @@ import SwiftUI
 
 struct UIOnboardingBottomBar: View {
     // MARK: - Properties
-    var bottomBar: UIOnboardingBottomBarConfiguration
+    let bottomBar: UIOnboardingBottomBarConfiguration
     let reader: GeometryProxy
     let show: (() -> Void)?
-    var showContent: Bool
+    let showContent: Bool
 
     // MARK: - Private properties
     private let isPad = UIDevice.current.userInterfaceIdiom == .pad
@@ -36,7 +36,7 @@ private extension UIOnboardingBottomBar {
                     Text(bottomBar.subtitle)
                         .font(
                             .system(
-                                size: isPad ? 14 : reader.size.height * (1 / 62)))
+                                size: isPad ? 14 : reader.size.height * 1 / 62))
                         .foregroundColor(showContent ? Color(UIColor.systemGray) : .clear)
                 }
                 .padding(.bottom, 10)
@@ -53,7 +53,7 @@ private extension UIOnboardingBottomBar {
                     }
                     .frame(width: isPad ? 340 : 282, height: isPad ? 54 : 54)
                     .background(showContent ? Color(UIColor.label) : .clear)
-                    .cornerRadius(isPad ? reader.size.height * (1 / 70) : reader.size.height * (1 / 44))
+                    .cornerRadius(isPad ? reader.size.height * 1 / 70 : reader.size.height * 1 / 44)
                 }
             }
         }

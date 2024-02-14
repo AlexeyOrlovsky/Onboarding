@@ -11,7 +11,7 @@ struct UIOnboardingRow: View {
     // MARK: - Properties
     let permission: UIOnboardingFeature
     let reader: GeometryProxy
-    var iconPadding: Bool
+    let iconPadding: Bool
 
     // MARK: - Private properties
     private let isPad = UIDevice.current.userInterfaceIdiom == .pad
@@ -31,7 +31,7 @@ private extension UIOnboardingRow {
             HStack {
                 VStack(alignment: .leading) {
                     Text(permission.title)
-                        .font(.system(size: isPad ? 22 : 18))
+                        .font(.system(size: isPad ? 20 : 18))
                         .fontWeight(.semibold)
                     Text(permission.description)
                         .font(.system(size: isPad ? 20 : 16))

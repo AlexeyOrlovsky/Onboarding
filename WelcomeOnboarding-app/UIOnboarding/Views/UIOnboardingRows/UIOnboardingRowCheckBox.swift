@@ -9,10 +9,10 @@ import SwiftUI
 
 struct UIOnboardingRowCheckBox: View {
     // MARK: - Properties
-    var permission: UIOnboardingFeatureCheckBox
+    let permission: UIOnboardingFeatureCheckBox
     let reader: GeometryProxy
-    var iconPadding: Bool
-    var isSelected: Bool
+    let iconPadding: Bool
+    let isSelected: Bool
 
     // MARK: - Private properties
     private let isPad = UIDevice.current.userInterfaceIdiom == .pad
@@ -37,8 +37,8 @@ private extension UIOnboardingRowCheckBox {
                 isSelected ? Image(systemName: "checkmark")
                     .resizable()
                     .frame(
-                        width: isPad ? 20 : reader.size.height * (1 / 52),
-                        height: isPad ? 20 : reader.size.height * (1 / 52)
+                        width: isPad ? 20 : reader.size.height * 1 / 52,
+                        height: isPad ? 20 : reader.size.height * 1 / 52
                     ) : nil
             }
         }

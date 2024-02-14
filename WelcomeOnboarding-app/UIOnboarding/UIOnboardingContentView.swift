@@ -15,16 +15,16 @@ struct UIOnboardingContentView: View {
     let featurePadding: Double
     let onboardingRowWidth: Double
     let showBottomBarBackground: Bool
-    var withConfiguration: UIOnboardingViewConfiguration
+    let withConfiguration: UIOnboardingViewConfiguration
     let onNextAction: (() -> Void)?
     let multiSelect: Bool
     let onSelectItems: (([UIOnboardingViewConfiguration.Feature]) -> Void)?
 
-    var showWithPresentAnimation: Bool
+    let showWithPresentAnimation: Bool
     @State var selected: [UIOnboardingViewConfiguration.Feature] = []
 
-    // MARK: - Properties
-    @State private var yBGOfset: CGFloat = 1000
+    // MARK: - Private Properties
+    @State private var yBGOffset: CGFloat = 1000
     @State private var zoomTitle: Bool = false
     @State private var moveToTopTitle: Bool = false
     @State private var showContent: Bool = false
@@ -36,7 +36,7 @@ struct UIOnboardingContentView: View {
             .background(Color(UIColor.systemBackground))
             .onAppear {
                 withAnimation(.easeInOut(duration: 0.5)) {
-                    self.yBGOfset = self.showWithPresentAnimation ? 0 : 1000
+                    self.yBGOffset = self.showWithPresentAnimation ? 0 : 1000
                 }
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -64,7 +64,7 @@ private extension UIOnboardingContentView {
         GeometryReader { reader in
             ZStack {
                 Color(UIColor.systemGray6)
-                    .offset(y: self.yBGOfset)
+                    .offset(y: self.yBGOffset)
 
                 VStack(alignment: .leading, spacing: 0) {
                     ScrollView(showsIndicators: false) {
@@ -89,7 +89,7 @@ private extension UIOnboardingContentView {
 
             }
             .ignoresSafeArea()
-            .background(Color(UIColor.systemGray6)) // 🏳️
+            .background(Color(UIColor.systemGray6))
         }
     }
 }
