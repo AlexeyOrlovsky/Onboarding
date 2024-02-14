@@ -21,9 +21,9 @@ struct AppCoordinator: View {
     var body: some View {
         Router($viewModel.routes) { screen, _ in
             switch screen {
-                case.languageView:
+                case.language:
                     languageView
-                case.welcomeView:
+                case.welcome:
                     welcomeView
             }
         }

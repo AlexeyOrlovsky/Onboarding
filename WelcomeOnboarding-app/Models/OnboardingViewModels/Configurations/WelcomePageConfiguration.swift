@@ -31,7 +31,7 @@ extension WelcomeOnboarding {
             let title = "Welcome to"
             return title
         }
-
+        
         static func setUpSecondTitleLine() -> String {
             let title = "ANY"
             return title

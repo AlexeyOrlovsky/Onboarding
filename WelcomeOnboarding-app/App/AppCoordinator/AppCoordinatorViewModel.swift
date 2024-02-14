@@ -12,10 +12,10 @@ import FlowStacks
 class AppCoordinatorViewModel: ObservableObject {
     // MARK: - Screen
     enum Screen {
-        case languageView // language
-        case welcomeView
+        case language
+        case welcome
     }
 
     // MARK: - Public Properties
-    @Published var routes: Routes<Screen> = [.root(.languageView, embedInNavigationView: true)]
+    @Published var routes: Routes<Screen> = [.root(.language, embedInNavigationView: true)]
 }

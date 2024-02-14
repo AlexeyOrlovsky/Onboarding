@@ -30,7 +30,6 @@ public struct UIOnboardingViewConfiguration {
     public let secondTitleLine: String
     public let features: [Feature]
     public let bottomBar: UIOnboardingBottomBarConfiguration
-    public let defaultSelection: IndexPath
 
     // MARK: - Init
     public init(
@@ -38,14 +37,12 @@ public struct UIOnboardingViewConfiguration {
         firstTitleLine: String,
         secondTitleLine: String,
         features: [Feature],
-        bottomBar: UIOnboardingBottomBarConfiguration,
-        defaultSelection: IndexPath = .init(row: 0, section: 0)
+        bottomBar: UIOnboardingBottomBarConfiguration
     ) {
         self.appIcon = appIcon
         self.firstTitleLine = firstTitleLine
         self.secondTitleLine = secondTitleLine
         self.features = features
         self.bottomBar = bottomBar
-        self.defaultSelection = defaultSelection
     }
 }
