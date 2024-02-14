@@ -9,15 +9,22 @@ import SwiftUI
 
 struct UIOnboardingContentView: View {
     // MARK: - Properties
+    let headerTitleSize: Double
+    let headerTitleSizeIsPad: Double
+    let headerTitlePadding: Double
+    let featurePadding: Double
+    let onboardingRowWidth: Double
+    let showBottomBarBackground: Bool
     var withConfiguration: UIOnboardingViewConfiguration
     let onNextAction: (() -> Void)?
     let multiSelect: Bool
     let onSelectItems: (([UIOnboardingViewConfiguration.Feature]) -> Void)?
 
-    @State var showJumpBackground: Bool
+    var showWithPresentAnimation: Bool
     @State var selected: [UIOnboardingViewConfiguration.Feature] = []
 
     // MARK: - Properties
+    @State private var yBGOfset: CGFloat = 1000
     @State private var zoomTitle: Bool = false
     @State private var moveToTopTitle: Bool = false
     @State private var showContent: Bool = false
@@ -28,7 +35,9 @@ struct UIOnboardingContentView: View {
             .ignoresSafeArea()
             .background(Color(UIColor.systemBackground))
             .onAppear {
-                self.showJumpBackground = false
+                withAnimation(.easeInOut(duration: 0.5)) {
+                    self.yBGOfset = self.showWithPresentAnimation ? 0 : 1000
+                }
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     withAnimation(.easeInOut(duration: 1.0)) {
@@ -55,32 +64,32 @@ private extension UIOnboardingContentView {
         GeometryReader { reader in
             ZStack {
                 Color(UIColor.systemGray6)
-                    .offset(y: showJumpBackground ? 1000 : 0)
-                    .animation(Animation.linear(duration: 0.5), value: UUID())
-                VStack(spacing: 0) {
+                    .offset(y: self.yBGOfset)
+
+                VStack(alignment: .leading, spacing: 0) {
                     ScrollView(showsIndicators: false) {
                             header(reader: reader)
-                            .padding()
 
                             feature(reader: reader)
-                                .frame(width: isPad ? 550 : 320)
+                                .frame(width: isPad ? 520 : onboardingRowWidth)
                                 .opacity(showContent ? 1 : 0)
-                                .padding(.top, reader.size.height * -(1 / 4.8))
+                                .padding(.top, reader.size.height * -(1 / featurePadding))
+                                .padding(.bottom, reader.size.height * (isPad ? 1 / 4 : 1 / 3.4))
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
                 VStack {
                     Spacer()
                     bottomBar(reader: reader)
-                        .frame(height: reader.size.height * (isPad ? 1 / 5.6 : 1 / 4.2 ))
+                        .frame(height: reader.size.height * (isPad ? 1 / 4 : 1 / 3.4))
                         .frame(maxWidth: .infinity)
-                        .background(.ultraThinMaterial)
+                        .background(showBottomBarBackground ? .ultraThinMaterial : .ultraThickMaterial)
                         .opacity(showContent ? 1.0 : 0)
                 }
                 .padding(.top, 0)
 
             }
             .ignoresSafeArea()
+            .background(Color(UIColor.systemGray6)) // 🏳️
         }
     }
 }
@@ -99,15 +108,15 @@ private extension UIOnboardingContentView {
                 .cornerRadius(15)
                 .opacity(moveToTopTitle ? 0 : 1)
             Text(withConfiguration.firstTitleLine)
-                .font(.system(size: isPad ? 86 : 54))
+                .font(.system(size: CGFloat(isPad ? headerTitleSizeIsPad : headerTitleSize)))
                 .fontWeight(isPad ? .black : .heavy)
                 .foregroundColor(.black).opacity(zoomTitle ? 1 : 0)
             Text(withConfiguration.secondTitleLine)
-                .font(.system(size: isPad ? 86 : 54))
+                .font(.system(size: CGFloat(isPad ? headerTitleSizeIsPad : headerTitleSize)))
                 .fontWeight(isPad ? .black : .heavy)
                 .foregroundColor(.black).opacity(zoomTitle ? 1 : 0)
         }
-        .padding(.top, reader.size.height * (1 / 3.9))
+        .padding(.top, isPad ? reader.size.height * (1 / 3.8) : reader.size.height * CGFloat(1 / headerTitlePadding))
         .scaleEffect(zoomTitle ? 1 : 0.5)
         .offset(y: moveToTopTitle ? reader.size.height * -(1 / 4.4) : 0)
     }
@@ -136,15 +145,12 @@ private extension UIOnboardingContentView {
                                     return false
                                 }) {
                                     selected.remove(at: index)
-                                    checkBoxFeature.selected = false
                                 } else {
                                     selected.append(.checkBox(checkBoxFeature))
-                                    checkBoxFeature.selected = true
                                 }
                             } else {
                                 selected.removeAll()
                                 selected.append(.checkBox(checkBoxFeature))
-                                checkBoxFeature.selected = true
                             }
                             self.onSelectItems?(self.selected)
                         } label: {
@@ -161,14 +167,12 @@ private extension UIOnboardingContentView {
                                 iconPadding: true,
                                 isSelected: isSelected
                             )
-                            .padding(.top, reader.size.height * (1 / 68))
                         }
                         .tint(Color(UIColor.label))
                         .buttonStyle(PlainButtonStyle())
                 }
             }
         }
-        .padding(.bottom, reader.size.height * (1 / 4))
     }
 }
 
@@ -179,19 +183,8 @@ private extension UIOnboardingContentView {
             bottomBar: self.withConfiguration.bottomBar,
             reader: reader,
             show: onNextAction,
-            showContent: self.$showContent
+            showContent: self.showContent
         )
-        .padding(.bottom, 20)
+        .padding(.bottom, reader.size.height * (1 / 25))
     }
 }
-
-#Preview {
-    LanguageContentView() // WelcomeContentView()
-}
-
-// MARK: - Config Settings
-// let headerTitleSize: Int
-// let headerPaddingTop: Int
-// let alignmentFeatures: Int
-// let spacingBetwinFeatures: Int
-// let showBottomBarBackground: Bool

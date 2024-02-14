@@ -16,14 +16,19 @@ struct LanguageContentView: View {
 
     var body: some View {
         UIOnboardingContentView(
+            headerTitleSize: 24,
+            headerTitleSizeIsPad: 44,
+            headerTitlePadding: 3.5,
+            featurePadding: 4.9,
+            onboardingRowWidth: 280,
+            showBottomBarBackground: false,
             withConfiguration: withConfiguration,
             onNextAction: { navigator.push(.welcomeView) },
             multiSelect: false,
             onSelectItems: { selectedItems in
                 debugPrint(selectedItems)
             },
-            showJumpBackground: true,
-            selected: [withConfiguration.features].first ?? .init()
+            showWithPresentAnimation: true
         )
     }
 }
