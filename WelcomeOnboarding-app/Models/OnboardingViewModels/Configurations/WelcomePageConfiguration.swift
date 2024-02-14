@@ -41,14 +41,14 @@ extension WelcomeOnboarding {
             [
                 .plain(
                     .init(
-                        icon: UIImage(named: "bluetoothIcon") ?? .init(), // // Image("bluetoothIcon")
+                        icon: UIImage(named: "bluetoothIcon") ?? .init(),
                         title: "Allow to use bluetooth connection",
                         description: "It's needed to scan nearby beacons and present different scenarios to you"
                     )
                 ),
                 .plain(
                     .init(
-                        icon: UIImage(systemName: "location") ?? .init(),
+                        icon: UIImage(named: "location") ?? .init(),
                         title: "Allow to use location updates",
                         description: "It's needed to scan nearby beacons and present different scenarios to you"
                     )

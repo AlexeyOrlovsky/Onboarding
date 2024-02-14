@@ -9,7 +9,7 @@ import SwiftUI
 
 public struct UIOnboardingFeature: Identifiable {
     public let id = UUID()
-    let icon: UIImage // Image
+    let icon: UIImage
     let iconTint: Color
     let title: String
     let description: String

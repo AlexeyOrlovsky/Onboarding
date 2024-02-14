@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public class UIOnboardingFeatureCheckBox: Identifiable {
+public struct UIOnboardingFeatureCheckBox: Identifiable {
     public let id = UUID()
     let icon: UIImage
     let iconTint: Color

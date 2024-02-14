@@ -9,12 +9,12 @@ import SwiftUI
 
 struct UIOnboardingBottomBar: View {
     // MARK: - Properties
-    var bottomBar: UIOnboardingBottomBarConfiguration
+    let bottomBar: UIOnboardingBottomBarConfiguration
     let reader: GeometryProxy
     let show: (() -> Void)?
+    let showContent: Bool
 
-    // MARK: - Properties
-    @Binding var showContent: Bool
+    // MARK: - Private properties
     private let isPad = UIDevice.current.userInterfaceIdiom == .pad
 
     var body: some View {
@@ -28,33 +28,35 @@ private extension UIOnboardingBottomBar {
         VStack {
             Spacer()
             VStack(spacing: 20) {
-                VStack(spacing: 10) {
+                VStack(spacing: 18) {
                     Image(systemName: bottomBar.icon)
                         .resizable()
-                        .frame(width: reader.size.height * (1 / 60), height: reader.size.height *
-                               (1 / 60))
+                        .frame(width: isPad ? 18 : 16, height: isPad ? 18 : 16)
                         .foregroundColor(showContent ? Color(UIColor.systemGray2) : .clear)
                     Text(bottomBar.subtitle)
-                        .font(.system(size: reader.size.height * (1 / 60)))
-                        .foregroundColor(showContent ? Color(UIColor.systemGray2) : .clear)
+                        .font(
+                            .system(
+                                size: isPad ? 14 : reader.size.height * 1 / 62))
+                        .foregroundColor(showContent ? Color(UIColor.systemGray) : .clear)
                 }
+                .padding(.bottom, 10)
+
                 VStack(alignment: .center) {
                     Button {
                         show?()
                         debugPrint("Continue Button tapped")
                     } label: {
                         Text(bottomBar.buttonText)
-                            .font(.system(size: isPad ? 24 : 20))
+                            .font(.system(size: isPad ? 20 : 18))
                             .foregroundColor(showContent ? Color(UIColor.systemBackground) : .clear)
                             .fontWeight(.bold)
                     }
-                    .frame(width: isPad ? 300 : 252, height: isPad ? 58 : 54)
+                    .frame(width: isPad ? 340 : 282, height: isPad ? 54 : 54)
                     .background(showContent ? Color(UIColor.label) : .clear)
-                    .cornerRadius(reader.size.height *
-                                  (1 / 52))
+                    .cornerRadius(isPad ? reader.size.height * 1 / 70 : reader.size.height * 1 / 44)
                 }
             }
         }
-        .padding(.bottom)
+        .padding(.bottom, isPad ? 10 : 20)
     }
 }
